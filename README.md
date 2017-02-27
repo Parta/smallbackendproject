@@ -46,11 +46,15 @@ At that point it becomes necessary to index the table on the "company", to speed
 In terms of inserting data into the database, this would be 100 000 inserts every 10 mins, or 167 inserts / second. This gives about 6 ms for each insert to keep up, which is a brisk pace. As the application is set up now, for each company, for each lookup for each company, the application opens a connection to the database, makes an insert, and then closes the database connection. This is going to be a tremendously inefficient way to handle 100 000 lookups in short succession. 
 
 It's going to be a better idea to restructure the method that inserts data into the database to take in an array of [company, fan_count] pairs, open a database connection once, iterate over the array and insert all the data before closing the connection. 
+
 Further, we would want to insert the data in one multi-value bulk insert in one insert statement using multiple sets of values (company1, value1), (company2, value2), ...
 We could generate one long SQL insert string programmatically by iterating over the array of [company, fan_count] data pairs.
 As long as we don't run into max_allowed_packet limitations, this would work well.
-So then we open the connection, generate the sql insert string, perform the one bilk insert, and then close the connection.
+
+So then we open the connection, generate the sql insert string, perform the one bulk insert, and then close the connection.
 This would be the most efficient way I could see to insert the data into the database.
+
+However, I see another problem on the other side, getting the data from Facebook. 600 000 Graph API calls per hour is a lot. This would create issues in terms of time taken to send and receive requests, as well as in rate limits for API calls from Facebook. The time element would in theory be handled by grouping all the requests into one batch, sending that batch, letting it be processed, and then receiving back the response. However, Facebook apparently limits batch size to 50 requests, and all requests still count toward hourly rate limits, which would, as I understand it, be exceeded by this load. I'm not sure how to get around this issue.
 
 
 
