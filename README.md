@@ -43,13 +43,14 @@ This is a lot, but it's not straining the limits of a relational database engine
 
 At that point it becomes necessary to index the table on the "company", to speed up select queries.
 
-In terms of inserting data into the database, this would be 100 000 inserts every 10 mins, or 167 inserts / second. This gives about 6 ms for each insert to keep up, which is a brisk pace. As the application is set up now, for each company, for each lookup for each company, the application opens a connection to the database, makes an insert, and then closes the database connection. This is going to be a tremendously inefficient way to handle 100 000 lookups in short succession. 
+In terms of inserting data into the database, this would be 100 000 inserts every 10 mins, or 167 inserts / second. This gives about 6 ms for each insert to keep up, which is a brisk pace. As the application is set up now, for each lookup for each company, the application opens a connection to the database, makes an insert, and then closes the database connection. This is going to be a tremendously inefficient way to handle 100 000 lookups in short succession. 
 
 It's going to be a better idea to restructure the method that inserts data into the database to take in an array of [company, fan_count] pairs, open a database connection once, iterate over the array and insert all the data before closing the connection. 
 
-Further, we would want to insert the data in one multi-value bulk insert in one insert statement using multiple sets of values (company1, value1), (company2, value2), ...
+Further, we would want to insert the data in ONE multi-value bulk insert in ONE insert statement using multiple sets of values (company1, value1), (company2, value2), ...
 We could generate one long SQL insert string programmatically by iterating over the array of [company, fan_count] data pairs.
 As long as we don't run into max_allowed_packet limitations, this would work well.
+http://stackoverflow.com/questions/22164070/mysql-insert-20k-rows-in-single-insert
 
 So then we open the connection, generate the sql insert string, perform the one bulk insert, and then close the connection.
 This would be the most efficient way I could see to insert the data into the database.
