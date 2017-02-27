@@ -16,7 +16,10 @@ http://localhost/get_data.php?page_id={fb_page_id}&format=linechart
 
 The API takes a format parameter that changes the structure of the JSON object outputed
 
-It can take one of 3 formats: linechart, table, multiplepage. 
+It can take one of 3 formats: 
+* linechart 
+* table, and 
+* multiplepage. 
 
 There are json files in this project (linechart, table, multiplepage) to show examples of the expected output
 
