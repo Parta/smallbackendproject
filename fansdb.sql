@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `fb_data` (
   `company` varchar(30) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `value` bigint(20) unsigned NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `value` bigint(20) unsigned,
   PRIMARY KEY (`company`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
