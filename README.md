@@ -20,18 +20,41 @@ It can take one of 3 formats: linechart, table, multiplepage.
 
 There's json files in this project to show the expected outputs
 
-Data is stored in a MySQL database with one table, fb_data for the Facebook data for any companies followed.
+Data is stored in a MySQL database, fansdb, with one table, fb_data for the Facebook data for any companies followed.
 Additional tables could be added to capture data for other social platforms
 
 
 
-Answers to questions:
+Questions:
 ======================================
 - Let us imagine we now have 100.000 Facebook pages to get fans count of, every 10 minutes. Please provide a quick answer to the following questions :
     - What would you change in your architecture to cope with the load ?
     - What kind of other possible problems would you think of ?
     - How would you propose to control data quality ?
 
-- Any other comments you might find useful
+Answers:
+======================================
+I would keep with one table to hold the Facebook fans data for all the companies. 
+100 000 fan_count lookups x 6 times / hour x 24 hours / day ~ (order of magnitude) 10 million rows added / day 
+Each month, (order of magnitude) 100 million rows added
+Each year, (order of magnitude) a few billion rows added
+
+This is a lot, but it's not straining the limits of a relational database engine like MySQL. That's doable.
+
+At that point it becomes necessary to index the table on the "company", to speed up select queries.
+
+In terms of inserting data into the database, this would be 100 000 inserts every 10 mins, or 167 inserts / second. This gives about 6 ms for each insert to keep up, which is a brisk pace. As the application is set up now, for each company, for each lookup for each company, the application opens a connection to the database, makes an insert, and then closes the database connection. This is going to be a tremendously inefficient way to handle 100 000 lookups in short succession. 
+
+It's going to be a better idea to restructure the method that inserts data into the database to take in an array of [company, fan_count] pairs, open a database connection once, iterate over the array and insert all the data before closing the connection. 
+Further, we would want to insert the data in one multi-value bulk insert in one insert statement using multiple sets of values (company1, value1), (company2, value2), ...
+We could generate one long SQL insert string programmatically by iterating over the array of [company, fan_count] data pairs.
+As long as we don't run into max_allowed_packet limitations, this would work well.
+So then we open the connection, generate the sql insert string, perform the one bilk insert, and then close the connection.
+This would be the most efficient way I could see to insert the data into the database.
+
+
+
+
+
 
 
