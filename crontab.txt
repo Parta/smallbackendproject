@@ -1,0 +1,2 @@
+0 * * * * php index.php --platform=facebook --page_id=cocacola
+
