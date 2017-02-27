@@ -53,7 +53,7 @@ function add_data_to_database($page, $count) {
 $input_args = parse_command_line_args(array_slice($argv, 1));
 
 //could expand this later to allow crawling of other social platforms
-if ($input_args['platform'] == 'facebook') {
+if ($input_args['platform'] === 'facebook') {
 	//Get FB fan count
 	$FB_page = input_args['page_id'];
 	$count = get_facebook_fan_count(input_args['page_id']);
@@ -61,7 +61,7 @@ if ($input_args['platform'] == 'facebook') {
 	//Insert data into database
 	add_data_to_database($FB_page, $count);
 } else {
-	
+	//handle requests for other platforms such as Twitter
 }
 
 
