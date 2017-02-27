@@ -34,6 +34,8 @@ Questions:
 
 Answers:
 ======================================
+Coping with Increased Load
+
 I would keep with one table to hold the Facebook fans data for all the companies. 
 100 000 fan_count lookups x 6 times / hour x 24 hours / day ~ (order of magnitude) 10 million rows added / day 
 Each month, (order of magnitude) 100 million rows added
@@ -55,9 +57,20 @@ http://stackoverflow.com/questions/22164070/mysql-insert-20k-rows-in-single-inse
 So then we open the connection, generate the sql insert string, perform the one bulk insert, and then close the connection.
 This would be the most efficient way I could see to insert the data into the database.
 
+
+Other Problems
+
 However, I see another problem on the other side, getting the data from Facebook. 600 000 Graph API calls per hour is a lot. This would create issues in terms of time taken to send and receive requests, as well as in rate limits for API calls from Facebook. The time element would in theory be handled by grouping all the requests into one batch, sending that batch, letting it be processed, and then receiving back the response. However, Facebook apparently limits batch size to 50 requests, and all requests still count toward hourly rate limits, which would, as I understand it, be exceeded by this load. I'm not sure how to get around this issue.
 
 
+Data Quality Considerations
+
+Three data quality issues that could present themselves are missing data, out of bounds data values, and outliers.
+Out of bounds data would be values that due to errors are outside the realistic range - for example, a negative value for a Facebook fan_count. Out of bounds or missing values could be addressed on insertion into the database, and could be replaced by some chosen indicator - NULL, say.
+
+The data can also be periodically examined and cleaned after the fact. This is where outliers can be more easily identified. Outliers could include values that jump from one measurement period to another by an excessive amount - for example, you wouldn't generally expect the CocaCola fans count to jump by 10% in 10 minutes. Data that varies beyond some threashold relative to its nearest neighbors in the time series could be either dropped - whether from the database or from the analysis process - or adjusted via interpolation - again, either in the database or in the process of analysis. NULL values could be treated after the fact in the same way. 
+
+We would also probably want to perform some sort of statistical smoothing of the time series to help separate signal from noise to improve the ability to perform modeling of the data. You're going to want to be able to model to properly attribute variation in stats to whatever marketing intervention you're making to evaluate effectiveness.
 
 
 
