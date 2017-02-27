@@ -43,9 +43,9 @@ Answers:
 __Coping with Increased Load__
 
 I would keep with one table to hold the Facebook fans data for all the companies. 
-100 000 fan_count lookups x 6 times / hour x 24 hours / day ~ (order of magnitude) 10 million rows added / day 
-Each month, (order of magnitude) 100 million rows added
-Each year, (order of magnitude) a few billion rows added
+100 000 fan_count lookups x 6 times / hour x 24 hours / day ~ (order of magnitude) 10 million rows added / day. 
+Each month, (order of magnitude) 100 million rows added.
+Each year, (order of magnitude) a few billion rows added.
 
 This is a lot, but it's not straining the limits of a relational database engine like MySQL. That's doable.
 
