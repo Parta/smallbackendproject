@@ -23,7 +23,13 @@ There are json files in this project (linechart, table, multiplepage) to show ex
 Data is stored in a MySQL database, fansdb, with one table, fb_data for the Facebook data for any companies followed. This table has 3 rows - company, date, value - and is indexed on company.
 Additional tables could be added to capture data for other social platforms
 
-
+Contents:
+=====================================
+* index.php - script to crawl Facebook and enter data into DB
+* getdata.php - script to retrieve company data from database requested using URL
+* config.php - basic config data used by scripts
+* crontab.txt - cron script to execute hourly to call index.php
+* fansdb.sql - export of database structure
 
 Questions:
 ======================================
