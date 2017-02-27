@@ -11,7 +11,7 @@ Functionality:
 A crawling robot is executed by a cron job, crontab.txt, every hour via a command line:  
 php index.php --platform=facebook --page_id={fb_page_id}
 
-The API returns a JSON object via a URL such as (but not necessarily) :  
+The API returns a JSON object via a URL:  
 http://localhost/get_data.php?page_id={fb_page_id}&format=linechart 
 
 The API takes a format parameter that changes the structure of the JSON object outputed
