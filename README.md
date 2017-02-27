@@ -18,9 +18,9 @@ The API takes a format parameter that changes the structure of the JSON object o
 
 It can take one of 3 formats: linechart, table, multiplepage. 
 
-There's json files in this project to show the expected outputs
+There are json files in this project (linechart, table, multiplepage) to show examples of the expected output
 
-Data is stored in a MySQL database, fansdb, with one table, fb_data for the Facebook data for any companies followed.
+Data is stored in a MySQL database, fansdb, with one table, fb_data for the Facebook data for any companies followed. This table has 3 rows - company, date, value - and is indexed on company.
 Additional tables could be added to capture data for other social platforms
 
 
