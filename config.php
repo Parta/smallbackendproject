@@ -7,7 +7,7 @@ $db_user = "user";
 $db_pass = "pass";
 
 //FB API credentials - these are my own from a FB dev acct - don't wear 'em out! ;)
-$FB_app_id = '286514924692912';
-$FB_appsecret = '8db39db1f5f1ed6a7406d453d71e37c7'
+$FB_app_id = 'enter valid FB app id';
+$FB_appsecret = 'enter valid FB app secret'
 
 ?>
