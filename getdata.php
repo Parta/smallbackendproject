@@ -110,6 +110,8 @@ function multiplepage($results) {
 //identify company id received from query string
 $company = $_GET['page_id'];
 
+//NOTE: DO NOT USE THE ABOVE AS IS!!!! JUST A SIMPLIFED SKETCH OF CONCEPT. SANITIZE USER INPUT BEFORE USING FOR SQL QUERY
+
 //Use company id to query data base. Get data from that company
 $company_fans_data = get_data_from_database($company);
 
