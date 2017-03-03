@@ -19,17 +19,7 @@ function parse_command_line_args($args) {
 //Returns the fan_count
 function get_facebook_fan_count($page_id) {
 	
-	// construct query url for FB api to get fan_count data. Query returns JSON
-	$json_url ='https://graph.facebook.com/v2.8/'.$page_id.'?access_token='.$FB_app_id.'|'.$FB_appsecret.'&fields=fan_count';
-	
-	//Gets JSON data from query url
-	$json = file_get_contents($json_url);
-	
-	//Convert JSON to PHP array
-	$json_output = json_decode($json, true);
-	
-	//extract the fan_count data and return it
-	$fan_count = $json_output["fan_count"];
+	// cont = $json_output["fan_count"];
 	return fan_count;
 }
 
@@ -55,8 +45,20 @@ $input_args = parse_command_line_args(array_slice($argv, 1));
 //could expand this later to allow crawling of other social platforms
 if ($input_args['platform'] === 'facebook') {
 	//Get FB fan count
-	$FB_page = input_args['page_id'];
-	$count = get_facebook_fan_count(input_args['page_id']);
+	$FB_page = $input_args['page_id'];
+	
+	//Construct query url for FB api to get fan_count data. Query returns JSON
+	$json_url ='https://graph.facebook.com/v2.8/'.$FB_page.'?access_token='.$FB_app_id.'|'.$FB_appsecret.'&fields=fan_count';
+	
+	//Gets JSON data from query url
+	$json = file_get_contents($json_url);
+	
+	//Convert JSON to PHP array
+	$json_output = json_decode($json, true);
+	
+	//extract the fan_count data and return it
+	$fan_coun
+	$count = get_facebook_fan_count($input_args['page_id']);
 
 	//Insert data into database
 	add_data_to_database($FB_page, $count);
