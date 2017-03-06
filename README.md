@@ -34,8 +34,9 @@ Answers:
     - What kind of other possible problems would you think of ?
     	1. API Rate Limits: FB API won't like it for sure! I can't think of a solution to address this except spreading this task around multiple servers. Especially, if these calls have to be initiated every 10 minutes for all of the 100k pages.
 
-    	2. No data getting saved due to api/network/database error.
+    	2. No data getting saved due to api/network/database error?
 
     - How would you propose to control data quality ?
 
-- Any other comments you might find useful
+- Other comments:
+    1. Let's talk more on Monday!
