@@ -6,58 +6,37 @@ Create a PHP 5.6+ application that hourly crawls the evolution of fans of the Fa
 Answer some questions on how to make this system scale (see Deliverable section.)
 
 
-Rules:
+How does it work?:
 ======================================
 
 (In the text below, {fb_page_id} = "cocacola")
 
-- The crawling robot must be executed by a cron job every hour via a command line such as (but not necessarily) :  
-php index.php --uri=crawler/fans --page_id={fb_page_id}
+- The Crawling Bot:  
+	php index.php --crawl-for=fb_fans --page-id={page_id}
 
-- The API should return a JSON object via a URL such as (but not necessarily) :  
-http://localhost/myframework/get/fans?page_id={fb_page_id}&format=linechart 
+- The API:  
+	e.g http://localhost:5255/fans.php?page_id=pepsi&format=table
 
-- The API should be able to take a format parameter that change the structure of the JSON object outputed
-
-- There will be 3 format: linechart, table, multiplepage. There's json files in this project to show the expected outputs
-
-- Database technology, data structure and application architecture is up to you.
-
+- Database technology, data structure and application architecture
+	1. Plain PHP
+	2. sql/* has the DDL
+	3. This app uses a single MySQL table to store historic fan counts.
 
 
-Deliverable:
-======================================
-- Fork this project
-
-- Push to your forked repository, containing your PHP files, cron file, an export of your database
-
-- In your repository wiki, answer the questions and put any additionnal informations
-
-- Create a pull request to submit your project.
-
-- Make sure your repository is publicly accessible
-
-Question:
+Answers:
 ======================================
 - Let us imagine we now have 100.000 Facebook pages to get fans count of, every 10 minutes. Please provide a quick answer to the following questions :
     - What would you change in your architecture to cope with the load ?
+    	1. Move away historic data to a different storage than the same MySQL table the crawler uses to store recent fan counts.
+    	2. As this data is not updated, it can be cached and served from a CDN location for specific periods.
+    	3. As the data collection evolves, various important points in a day could be identified and daily/hourly averages can be used to create periodic evolution charts.
+
     - What kind of other possible problems would you think of ?
+    	1. API Rate Limits: FB API won't like it for sure! I can't think of a solution to address this except spreading this task around multiple servers. Especially, if these calls have to be initiated every 10 minutes for all of the 100k pages.
+
+    	2. No data getting saved due to api/network/database error?
+
     - How would you propose to control data quality ?
 
-- Any other comments you might find useful
-
-
-Evaluation:
-======================================
-
-- We will evaluate if the requirements above work as expected
-
-- We will evaluate the structure of the application and the logic behind the separation of concerns. For example in the eventuality of adding other crawlers such as crawling Twitter followers of a Twitter account.
-
-- We will evaluate overall code quality and readability
-
-- We will evaluate the answers to the question listed in the Deliverable section and other comments that you may have found useful
-
-
-
-Cheers!
+- Other comments:
+    1. Let's talk more on Monday!
