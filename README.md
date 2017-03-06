@@ -41,6 +41,8 @@ Question:
 ======================================
 - Let us imagine we now have 100.000 Facebook pages to get fans count of, every 10 minutes. Please provide a quick answer to the following questions :
     - What would you change in your architecture to cope with the load ?
+    	1. 
+
     - What kind of other possible problems would you think of ?
     - How would you propose to control data quality ?
 
