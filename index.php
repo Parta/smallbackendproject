@@ -4,8 +4,8 @@ $app = require_once __DIR__ . '/config/config.php';
 $GLOBALS['db_config'] = $app['db'];
 
 $fb = new Facebook\Facebook([
-  'app_id' => '424851427855637',
-  'app_secret' => 'c5a0c361d429fdc5e1d862b939987d94',
+  'app_id' => $app['fb_app_id'],
+  'app_secret' => $app['fb_app_secret'],
   'default_graph_version' => 'v2.4',
   ]);
 $helper = $fb->getRedirectLoginHelper();
@@ -67,7 +67,7 @@ if (isset($accessToken)) {
 	 
 } else {
  
-	$loginUrl = $helper->getLoginUrl('http://thisthat.dev/', $permissions);
+	$loginUrl = $helper->getLoginUrl($app['host_url'], $permissions);
 	echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
 }
 
