@@ -11,11 +11,12 @@ $fb = new Facebook\Facebook([
 $helper = $fb->getRedirectLoginHelper();
 $permissions = ['email']; // optional
  
+if(isset($_SESSION['facebook_access_token'])){
 storeSessionVarInDataBase($_SESSION);
+}
 
 try {
-	if (isset($_SESSION['facebook_access_token'])) {
-		 
+	if (isset($_SESSION['facebook_access_token'])) {		 
 		$accessToken = $_SESSION['facebook_access_token'];
 	} else {
   		$accessToken = $helper->getAccessToken();
