@@ -4,8 +4,8 @@ $app = require_once __DIR__ . '/config/config.php';
 $GLOBALS['db_config'] = $app['db'];
 
 $fb = new Facebook\Facebook([
-  'app_id' => '424851427855637',
-  'app_secret' => 'c5a0c361d429fdc5e1d862b939987d94',
+  'app_id' => $app['fb_app_id'],
+  'app_secret' => $app['fb_app_secret'],
   'default_graph_version' => 'v2.4',
   ]);
  
@@ -31,7 +31,6 @@ if (isset($accessToken)) {
 	insertHourlyFanCount($fb_page_id, $fan_count, $uri); 
   	
 } else {
-	 
 	echo 'Run index.php to login to Facebook and get long term access_token';
 }
 
@@ -54,49 +53,44 @@ function getFanCount($fb_page_id, $accessToken){
 *
 */
 function getAccessTockenFromDb(){
+	$conn = getDBConnection();
 
-$conn = getDBConnection();
-
-$sql = "SELECT * FROM session ORDER BY id DESC LIMIT 1";
-$result = $conn->query($sql);
- $result =  $result->fetch_assoc();
- 
- foreach ($result as $key => $value) {
- 	if($key === 'access_tocken'){
- 		return $value;
- 	}
- }
-$conn->close();
-
+	$sql = "SELECT * FROM session ORDER BY id DESC LIMIT 1";
+	$result = $conn->query($sql);
+	 $result =  $result->fetch_assoc();
+	 
+	 foreach ($result as $key => $value) {
+	 	if($key === 'access_tocken'){
+	 		return $value;
+	 	}
+	 }
+	$conn->close();
 }
 
 
 function insertHourlyFanCount($fb_page_id, $fan_count, $uri){
+	$conn = getDBConnection();
+	$sql = "INSERT INTO fb_hourly_fan_count (`fan_count`, `fb_page_id`, `fb_page_name`)
+	VALUES ('$fan_count','$fb_page_id', '$uri')";
 
-$conn = getDBConnection();
-$sql = "INSERT INTO fb_hourly_fan_count (`fan_count`, `fb_page_id`, `fb_page_name`)
-VALUES ('$fan_count','$fb_page_id', '$uri')";
+	if ($conn->query($sql) === TRUE) {
+	    echo "New record created successfully";
+	} else {
+	    echo "Error: " . $sql . "<br>" . $conn->error;
+	}
 
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+	$conn->close();
 }
 
-$conn->close();
+function getDBConnection(){ 
+	// Create connection
+	$conn = new mysqli($GLOBALS['db_config']['host'], $GLOBALS['db_config']['username'], $GLOBALS['db_config']['password'], $GLOBALS['db_config']['db_name']);
+		// Check connection
+		if ($conn->connect_error) {
+		    die("Connection failed: " . $conn->connect_error);
+		} 
 
-}
-
-function getDBConnection(){
- 
-// Create connection
-$conn = new mysqli($GLOBALS['db_config']['host'], $GLOBALS['db_config']['username'], $GLOBALS['db_config']['password'], $GLOBALS['db_config']['db_name']);
-	// Check connection
-	if ($conn->connect_error) {
-	    die("Connection failed: " . $conn->connect_error);
-	} 
-
-return $conn;	
+	return $conn;	
 }
 
 ?>
