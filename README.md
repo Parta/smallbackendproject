@@ -1,6 +1,6 @@
  #engagementlabs Back-End Project 
 
-Rules:
+Instructions:
 ======================================
 
 (In the text below, {fb_page_id} = "cocacola")
