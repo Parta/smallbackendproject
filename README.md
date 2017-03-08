@@ -1,11 +1,5 @@
  #engagementlabs Back-End Project 
 
-Object:
-======================================
-Create a PHP 5.6+ application that hourly crawls the evolution of fans of the Facebook Coca-Cola page (https://www.facebook.com/cocacola).  
-Answer some questions on how to make thi system scale (see Deliverable section.)
-
-
 Rules:
 ======================================
 
