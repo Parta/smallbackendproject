@@ -1,0 +1,1 @@
+*/10 * * * * php {PATH_TO_THIS_DIR}/fanCountCrawler.php --uri=crawler/fans --page_id=cocacola
