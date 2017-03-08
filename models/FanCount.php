@@ -14,6 +14,12 @@ class FanCount
         $this->dbConnection = new Connection();
     }
 
+    public function find($id){
+        $sql = "SELECT * FROM $this->TABLENAME where id='{$id}'";
+        $result = $this->executeQuery($sql);
+        return $result;
+    }
+
     public function findAll(){
         $sql = "SELECT * FROM $this->TABLENAME";
         $result = $this->executeQuery($sql);
@@ -35,6 +41,27 @@ class FanCount
         return $fanCounts;
     }
 
+    public function findAllCompany($companyName){
+        $sql = "SELECT * FROM $this->TABLENAME INNER JOIN company ON company.id=fan_count.fb_page_id where company.name = '{$companyName}'";
+        $result = $this->executeQuery($sql);
+        $fanCounts = [];
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $obj = new FanCount();
+                $obj->setFanCount($row['fan_count']);
+                $obj->setPageId($row['fb_page_id']);
+                $obj->setCreatedAt($row['created_at']);
+
+                array_push($fanCounts, $obj);
+            }
+        } else {
+            echo "No result for ". $companyName;
+            return 0;
+        }
+
+        return $fanCounts;
+    }
+
     public function save(){
         $sql = "INSERT INTO $this->TABLENAME (fan_count, fb_page_id) VALUES ('{$this->fanCount}', '{$this->pageId}')";
         $this->executeQuery($sql);
@@ -45,9 +72,7 @@ class FanCount
         $conn = $this->dbConnection->connect();
 
         $result = $conn->query($sql);
-        if ($result) {
-            echo "Query successfully executed!";
-        } else {
+        if (!$result) {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
 
@@ -61,6 +86,17 @@ class FanCount
 
     public function getPageId(){
         return $this->pageId;
+    }
+
+    public function getCompanyName(){
+        $sql = "SELECT name FROM company INNER JOIN fan_count ON company.id=fan_count.fb_page_id";
+        $result = $this->executeQuery($sql);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return $row['name'];
+            }
+        }
     }
 
     public function getCreatedAt(){
