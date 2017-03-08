@@ -1,3 +1,5 @@
+CREATE database fan_count;
+
 create table if not exists company (
 	id INT(11) UNSIGNED NOT NULL,
 	name varchar(110) NOT NULL,
