@@ -20,6 +20,17 @@ class Company
     public function find($id){
         $sql = "SELECT * FROM $this->TABLENAME where id='{$id}'";
         $result = $this->executeQuery($sql);
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $obj = new FanCount();
+                $obj->setCompany($row['name']);
+                $obj->setPageId($row['id']);
+                $obj->setCreatedAt($row['created_at']);
+
+                array_push($fanCounts, $obj);
+            }
+        }
+
         return $result;
     }
 
@@ -27,21 +38,17 @@ class Company
         $sql = "SELECT * FROM $this->TABLENAME";
         $result = $this->executeQuery($sql);
         $fanCounts = [];
-
+        $obj = new FanCount();
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                $obj = new FanCount();
                 $obj->setCompany($row['company_name']);
                 $obj->setPageId($row['page_id']);
-                $obj->setCreatedAt($row['created_at']);
-
-                array_push($fanCounts, $obj);
             }
         } else {
             echo "0 results";
         }
 
-        return $fanCounts;
+        return $obj;
     }
 
     public function save(){

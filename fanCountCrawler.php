@@ -38,8 +38,10 @@
 
         if($id){
             $Company = new Company();
+            $Company = $Company->find($id);
 
-            if($Company->find($id)->num_rows == 0){
+            if(!$Company){
+                $Company = new Company();
                 $Company->setCompanyName($pageId);
                 $Company->setPageId($id);
                 $Company->save();
