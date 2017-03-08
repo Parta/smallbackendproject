@@ -3,9 +3,9 @@
 return (object) array(
     'host' => 'localhost',
     'username' => 'root',
-    'password' => '',
-    'fb_api_id' => '',
-    'fb_api_secret' => '',
+    'pass' => 'password',
+    'fb_api_id' => '251565848637066',
+    'fb_api_secret' => 'f28466e8b1270f990bccb1400ed1f211',
 );
 
 ?>
