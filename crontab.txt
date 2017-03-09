@@ -1,0 +1,1 @@
+0 * * * * php bin/console app:ImportPageData --uri=crawler/fans --page_id=cocacola

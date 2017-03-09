@@ -1,0 +1,22 @@
+What would you change in your architecture to cope with the load ?
+They have few possibility for this :
+Using nosql database like redis/mangodb/Cassandra for the reading. Maybe use ElasticSearch to make the search more easier and faster
+For that, I gonna still continue to use the sql database. Each time we save the data, I gonna reindex the list
+
+What kind of other possible problems would you think of ?
+So we save 100 000 pages every 10 min, each Facebook page will be record 144 time per day and on one day, that represent 14 400 000 row of data.
+The among of data will be too big and the search will take time.
+The json will be too big and the result will take time to show up and may not show up.
+
+
+How would you propose to control data quality ?
+Depends of what the project will be use, few thing can be done :
+ - get a list for the last month/week/day and make sure to re-index those list, it will save time
+ - have the possibility to select one or more Facebook page to generate the json and keep it lighter
+ - remove the older data based on the filter (in this example, we just keep the data from the last month of data)
+
+Any other comments you might find useful :
+The way we save the data has to be change, the cronjob just take care of one Facebook page. We can for example
+save every facebook Page on my pages table and just call the uri to save the information.
+Why we have an uri argument? Is that needed? Do we expect to have other argument? Right now, my code take care of one possible argument but can be easily
+modify to add a the switch function and handle other action.
