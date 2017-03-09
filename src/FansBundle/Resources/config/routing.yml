@@ -1,0 +1,6 @@
+fans_homepage:
+    path:     /get/fans/{page_id}/{format}
+    defaults: { _controller: FansBundle:Default:index }
+    methods: [GET]
+    requirements:
+      format: linechart|table|multiplepage

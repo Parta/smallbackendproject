@@ -1,0 +1,26 @@
+FansBundle\Entity\pages_data:
+    type: entity
+    table: null
+    repositoryClass: FansBundle\Repository\pages_dataRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        fans:
+            type: integer
+        date:
+            type: datetime
+        page_id:
+            type: integer
+
+    manyToOne:
+            pages:
+                targetEntity: pages
+                inversedBy: pages_data
+                joinColumn:
+                    name: page_id
+                    referencedColumnName: id
+    lifecycleCallbacks: {  }

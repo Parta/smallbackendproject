@@ -1,0 +1,3 @@
+fans:
+    resource: "@FansBundle/Resources/config/routing.yml"
+    prefix:   /

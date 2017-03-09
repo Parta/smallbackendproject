@@ -1,0 +1,19 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: engagementlabs
+    database_user: root
+    database_password: root
+
+    #MailerParam
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: ThisTokenIsNotSoSecretChangeIt
+
+    #facebookParam
+    client_id: 1831649397075585
+    client_secret: aa25171d71a7e7e1853e73b86a6a2fa2
+    facebook_url: https://graph.facebook.com
