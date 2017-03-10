@@ -1,0 +1,1 @@
+30 3 * * * /path/to/venv/bin/python crawl.py --page_id=cocacola
