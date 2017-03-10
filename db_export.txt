@@ -1,0 +1,14 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE fan_tracker (
+        id INTEGER PRIMARY KEY,
+        fb_page_id TEXT NOT NULL,
+        fan_count INTEGER NOT NULL,
+        time_stamp TEXT NOT NULL
+    );
+INSERT INTO "fan_tracker" VALUES(1,'apple',5560481,'2017-03-09 21:46:38.618225');
+INSERT INTO "fan_tracker" VALUES(2,'cocacola',103538096,'2017-03-09 21:46:54.680902');
+INSERT INTO "fan_tracker" VALUES(3,'cocacola',103538477,'2017-03-09 22:46:48.969318');
+INSERT INTO "fan_tracker" VALUES(4,'cocacola',103538478,'2017-03-09 22:46:50.515029');
+INSERT INTO "fan_tracker" VALUES(5,'cocacola',103538478,'2017-03-09 22:46:51.695162');
+COMMIT;
