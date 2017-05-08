@@ -23,6 +23,7 @@ def __request_helper(http_method, uri, body=None, headers={}):
     return json.loads(data.decode("utf-8"))
 
 
+FAN_NAME = "nytimes"
 with open('credentials.json') as credentials_file:
     credentials = json.load(credentials_file)
     app_id = credentials.get("app_id")
@@ -32,10 +33,10 @@ with open('credentials.json') as credentials_file:
                                     app_id=app_id, app_secret=app_secret))
     access_token = response.get("access_token")
     response = __request_helper("GET",
-                                "/v2.9/{fan_id}?access_token={access_token}&fields=fan_count,name&format=table".format(
-                                    fan_id="cocacola",
+                                "/v2.9/{fan_name}?access_token={access_token}&fields=fan_count,name&format=table".format(
+                                    fan_name=FAN_NAME,
                                     access_token=access_token))
 
-    fan_repository.insert_fan_count(fan_name=response.get("name"),
+    fan_repository.insert_fan_count(fan_name=FAN_NAME,
                                     fan_count=response.get("fan_count"),
                                     fan_id=response.get("id"))
