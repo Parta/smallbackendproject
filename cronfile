@@ -1,0 +1,3 @@
+# Wil excute on the 24th minute of every hour. Maker the crawler writeable and the script will excute.
+# to scan a different fan page add the option --page_id={name_of_page}
+28 * * * *  python /home/newman/PycharmProjects/small_backend_test/crawler.py --page_id=nytimes

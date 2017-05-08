@@ -1,9 +1,14 @@
 import http.client
 import json
 from dal.fan_page_dal import FanRepository
+from optparse import OptionParser
 
 fan_repository = FanRepository()
 conn = http.client.HTTPSConnection("graph.facebook.com")
+
+parser = OptionParser()
+parser.add_option("--page_id", dest="page_id", default="cocacola")
+(options, args) = parser.parse_args()
 
 
 def __request_helper(http_method, uri, body=None, headers={}):
@@ -23,7 +28,7 @@ def __request_helper(http_method, uri, body=None, headers={}):
     return json.loads(data.decode("utf-8"))
 
 
-FAN_NAME = "nytimes"
+FAN_NAME = options.page_id
 with open('credentials.json') as credentials_file:
     credentials = json.load(credentials_file)
     app_id = credentials.get("app_id")
