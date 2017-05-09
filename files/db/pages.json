@@ -1,0 +1,10 @@
+{ "_id" : { "$oid" : "590e6b1887df544ddda9df8c" }, "timestamp" : { "$date" : 1494117144460 }, "page_id" : "cocacola", "media" : "facebook" }
+{ "_id" : { "$oid" : "590e6b3687df544ddda9df8e" }, "timestamp" : { "$date" : 1494117174927 }, "page_id" : "facebook", "media" : "facebook" }
+{ "_id" : { "$oid" : "590e6b5e87df544ddda9df90" }, "timestamp" : { "$date" : 1494117214917 }, "page_id" : "youtube", "media" : "facebook" }
+{ "_id" : { "$oid" : "590e6b8e87df544ddda9df92" }, "timestamp" : { "$date" : 1494117262270 }, "page_id" : "pepsi", "media" : "facebook" }
+{ "_id" : { "$oid" : "590e6e7b87df54513b0cdbee" }, "timestamp" : { "$date" : 1494118011320 }, "page_id" : "walmart", "media" : "facebook" }
+{ "_id" : { "$oid" : "590e6e9187df54513b0cdbf0" }, "timestamp" : { "$date" : 1494118033204 }, "page_id" : "amazon", "media" : "facebook" }
+{ "_id" : { "$oid" : "590e6ed587df54513b0cdbf2" }, "timestamp" : { "$date" : 1494118101394 }, "page_id" : "lego", "media" : "facebook" }
+{ "_id" : { "$oid" : "590e6f3f87df54513b0cdbf4" }, "timestamp" : { "$date" : 1494118207088 }, "page_id" : "barackobama", "media" : "facebook" }
+{ "_id" : { "$oid" : "590e6f6187df54513b0cdbf6" }, "timestamp" : { "$date" : 1494118241688 }, "page_id" : "instagram", "media" : "facebook" }
+{ "_id" : { "$oid" : "590e6f9e87df54513b0cdbf8" }, "timestamp" : { "$date" : 1494118302275 }, "page_id" : "wikipedia", "media" : "facebook" }

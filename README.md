@@ -1,63 +1,89 @@
- #engagementlabs Back-End Project 
+This repository contains scripts for
+crawling Facebook page likes.
+The data is stored in a MongoDB instance
+and can be exposed through a service.
+You can also specify pages you wish to track.
 
-Object:
-======================================
-Create a PHP 5.6+ application that hourly crawls the evolution of fans of the Facebook Coca-Cola page (https://www.facebook.com/cocacola).  
-Answer some questions on how to make this system scale (see Deliverable section.)
+### Prerequisite
 
-
-Rules:
-======================================
-
-(In the text below, {fb_page_id} = "cocacola")
-
-- The crawling robot must be executed by a cron job every hour via a command line such as (but not necessarily) :  
-php index.php --uri=crawler/fans --page_id={fb_page_id}
-
-- The API should return a JSON object via a URL such as (but not necessarily) :  
-http://localhost/myframework/get/fans?page_id={fb_page_id}&format=linechart 
-
-- The API should be able to take a format parameter that change the structure of the JSON object outputed
-
-- There will be 3 format: linechart, table, multiplepage. There's json files in this project to show the expected outputs
-
-- Database technology, data structure and application architecture is up to you.
+- Python version `>=2.7`
+- A running mongodb instance 
 
 
+### Quick start
 
-Deliverable:
-======================================
-- Fork this project
-
-- Push to your forked repository, containing your PHP files, cron file, an export of your database
-
-- In your repository wiki, answer the questions and put any additionnal informations
-
-- Create a pull request to submit your project.
-
-- Make sure your repository is publicly accessible
-
-Question:
-======================================
-- Let us imagine we now have 100.000 Facebook pages to get fans count of, every 10 minutes. Please provide a quick answer to the following questions :
-    - What would you change in your architecture to cope with the load ?
-    - What kind of other possible problems would you think of ?
-    - How would you propose to control data quality ?
-
-- Any other comments you might find useful
+- Run `pip install -r requirements.txt` (to install the dependencies) 
 
 
-Evaluation:
-======================================
+### Run
 
-- We will evaluate if the requirements above work as expected
+- `cd /path/to/project/dir`
+- `export PYTHONPATH='.'`
 
-- We will evaluate the structure of the application and the logic behind the separation of concerns. For example in the eventuality of adding other crawlers such as crawling Twitter followers of a Twitter account.
+##### Crawler script:
+- `python lib/crawler.py --page_id=<fb_page_id>` for a particular page,
+</br> or
+- `python lib/crawler.py` for all saved pages.
 
-- We will evaluate overall code quality and readability
-
-- We will evaluate the answers to the question listed in the Deliverable section and other comments that you may have found useful
-
+##### Service:
+- `python service/service.py`
 
 
-Cheers!
+### Directory layout
+
+```
+.
+├── /db/                        # Database operations and model libraries
+├── /files/                     # Exported database and service output files in csv/json format
+├── /lib/                       # Business logic modules
+├── /service/                   # Defines the route (service endpoints)
+├── README.md                   # This file
+├── requirements.txt            # The list of third party libraries and utilities
+```
+
+
+### Usage
+
+```
+$ curl -g -X GET 'http://127.0.0.1:5000/get/fans/?page_id=<fb_page_id>&format=<output_format>'
+$ curl -H 'Content-Type: application/json' -X POST -d '{"page_id": "<fb_page_id>"}' http://127.0.0.1:5000/insert/page/
+```
+
+
+### Questions
+
+1. What would you change in your architecture to cope with the load ?
+    - I first consider using an API (*Facebook Graph API* in this case)
+    rather than crawling web pages in order to speed up the data retrieval process
+    - Allocate more resources for data ingestion: most of the services
+    can be horizontally scaled on the cloud; for example you can easily
+    scale up a deployment (increase the number of pods/containers) through Kubernetes
+    - Evenly distribute the load across multiple nodes using parallel
+    frameworks such as map-reduce, etc.
+2. What kind of other possible problems would you think of ?
+    - If using an API, the number of request per minute/hour/day
+    or simply API limit/quota
+    - A choice of database where data can be easily fetched and/or
+    aggreagted under a heavy load
+    - Data governance policy (if there are numerous data sources)
+    in order to avoid chaos in the future. Apache Falcon and
+    Cloudera Navigator are two examples in the Hadoop ecosystem.
+3. How would you propose to control data quality ?
+    - Develop a real-time monitoring system and precisely keep track
+    of what's coming in to the system as well as the data flow.
+    One example is to develop a generic monitoring/logging system
+    that is capable of generating different types of statistics.
+    Then we can use the ELK stack for instance,
+    Logstash for log ingestion,
+    ElasticSearch for storage and aggregation,
+    Kibana for visualization to produce reports and control data quality.
+    The other alternative for ELK stack is a combination of
+    StatsD, InfluxDB and Grafana.
+
+
+### Other things I'll consider
+
+- Add unit tests or develop the project in a TDD style manner (tests first)
+- Define API contracts using Swagger (flask-swagger or other libraries) for easy data validation, documentation and user manuals
+- Create proper indices over collections/tables for faster data retrieval
+- Possibly persist the data to tools such as ElasticSearch (or similar tools for that matter) to be able to query fast and visualize the data

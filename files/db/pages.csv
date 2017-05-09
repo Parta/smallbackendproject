@@ -1,0 +1,11 @@
+_id,timestamp,page_id,media
+ObjectId(590e6b1887df544ddda9df8c),2017-05-07T00:32:24.460Z,cocacola,facebook
+ObjectId(590e6b3687df544ddda9df8e),2017-05-07T00:32:54.927Z,facebook,facebook
+ObjectId(590e6b5e87df544ddda9df90),2017-05-07T00:33:34.917Z,youtube,facebook
+ObjectId(590e6b8e87df544ddda9df92),2017-05-07T00:34:22.270Z,pepsi,facebook
+ObjectId(590e6e7b87df54513b0cdbee),2017-05-07T00:46:51.320Z,walmart,facebook
+ObjectId(590e6e9187df54513b0cdbf0),2017-05-07T00:47:13.204Z,amazon,facebook
+ObjectId(590e6ed587df54513b0cdbf2),2017-05-07T00:48:21.394Z,lego,facebook
+ObjectId(590e6f3f87df54513b0cdbf4),2017-05-07T00:50:07.088Z,barackobama,facebook
+ObjectId(590e6f6187df54513b0cdbf6),2017-05-07T00:50:41.688Z,instagram,facebook
+ObjectId(590e6f9e87df54513b0cdbf8),2017-05-07T00:51:42.275Z,wikipedia,facebook
