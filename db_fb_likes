@@ -1,0 +1,94 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.3
+-- Dumped by pg_dump version 9.6.3
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: likes; Type: TABLE; Schema: public; Owner: Alexandre
+--
+
+CREATE TABLE likes (
+    dates integer NOT NULL,
+    page text,
+    likes integer
+);
+
+
+ALTER TABLE likes OWNER TO "Alexandre";
+
+--
+-- Data for Name: likes; Type: TABLE DATA; Schema: public; Owner: Alexandre
+--
+
+COPY likes (dates, page, likes) FROM stdin;
+1495158808	cocacolacanada	104379234
+1495158812	cocacolacanada	104379235
+1495158815	cocacolacanada	104379234
+1495158818	cocacolacanada	104379233
+1495158821	cocacolacanada	104379232
+1495158824	cocacolacanada	104379231
+1495158828	cocacolacanada	104379230
+1495158831	cocacolacanada	104379229
+1495158834	cocacolacanada	104379230
+1495158837	cocacolacanada	104379230
+1495158840	cocacolacanada	104379230
+1495158843	cocacolacanada	104379228
+1495158847	cocacolacanada	104379228
+1495158850	cocacolacanada	104379229
+1495158853	cocacolacanada	104379229
+1495158856	cocacolacanada	104379228
+1495158859	cocacolacanada	104379228
+1495158863	cocacolacanada	104379229
+1495158866	cocacolacanada	104379228
+1495158869	cocacolacanada	104379229
+1495159573	cocacolacanada	104379242
+1495159576	cocacolacanada	104379242
+1495159580	cocacolacanada	104379241
+1495159583	cocacolacanada	104379241
+1495159586	cocacolacanada	104379241
+\.
+
+
+--
+-- Name: likes likes_pkey; Type: CONSTRAINT; Schema: public; Owner: Alexandre
+--
+
+ALTER TABLE ONLY likes
+    ADD CONSTRAINT likes_pkey PRIMARY KEY (dates);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

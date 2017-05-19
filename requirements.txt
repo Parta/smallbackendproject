@@ -1,0 +1,9 @@
+Flask==0.10.1
+numpy==1.10.4
+pandas==0.18.1
+psycopg2==2.7.1
+requests==2.9.1
+SQLAlchemy==1.0.14
+schedule==0.4.2
+sqlalchemy-migrate==0.10.0
+sqlparse==0.2.0
