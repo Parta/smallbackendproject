@@ -29,11 +29,17 @@ class TestCommand extends Command
         $html = $response->getBody()->getContents();
 
         $crawler = new Crawler($html);
-        $crawler = $crawler->filter('body *');
-        foreach( $crawler as $domElement ) {
-            print_r($domElement->nodeName);
-            print_r("\n");
-        }
+        $texts = $crawler
+            ->filter('body #pages_side_column div._4-u2._3xaf._4-u8')
+            ->first()
+            ->filter('._2pi9._2pi2 ._4bl9 > div')
+            ->reduce(function(Crawler $node, $i) {
+                return $i === 1;
+            })
+            ->text();
+            
+        $output
+            ->writeln($texts);
 
 
         // print_r("Test command still working!");
