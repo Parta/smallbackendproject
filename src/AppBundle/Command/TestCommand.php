@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use GuzzleHttp\Client;
+use Symfony\Component\DomCrawler\Crawler;
 
 class TestCommand extends Command
 {
@@ -25,7 +26,15 @@ class TestCommand extends Command
     {
         $response = $this->client->request('get', '/cocacola');
 
-        print_r($response->getBody()->getContents());
+        $html = $response->getBody()->getContents();
+
+        $crawler = new Crawler($html);
+        $crawler = $crawler->filter('body *');
+        foreach( $crawler as $domElement ) {
+            print_r($domElement->nodeName);
+            print_r("\n");
+        }
+
 
         // print_r("Test command still working!");
         // $output
