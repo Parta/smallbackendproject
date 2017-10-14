@@ -13,10 +13,17 @@ class TestCommand extends Command
 {
     protected $client;
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->client = new Client([
+            'base_uri' => 'https://www.facebook.com'
+        ]);
+    }
+
     protected function configure()
     {
-        $this->initializeHttpClient();
-
         $this
             ->setName("test")
             ->setDescription("Just a test command");
@@ -25,11 +32,20 @@ class TestCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $response = $this->client->request('get', '/cocacola');
-
         $html = $response->getBody()->getContents();
 
+        $text = $this->executeCrawling($html);
+
+        $count = $this->parseText($text);
+
+        $output
+            ->writeln($count);
+    }
+
+    protected function executeCrawling($html)
+    {
         $crawler = new Crawler($html);
-        $texts = $crawler
+        $text = $crawler
             ->filter('body #pages_side_column div._4-u2._3xaf._4-u8')
             ->first()
             ->filter('._2pi9._2pi2 ._4bl9 > div')
@@ -37,20 +53,22 @@ class TestCommand extends Command
                 return $i === 1;
             })
             ->text();
-            
-        $output
-            ->writeln($texts);
 
-
-        // print_r("Test command still working!");
-        // $output
-        //     ->writeln("Test command working!");
+        return $text;
     }
 
-    protected function initializeHttpClient()
+    protected function parseText($text)
     {
-        $this->client = new Client([
-            'base_uri' => 'https://www.facebook.com'
-        ]);
+        preg_match("/^\d+(\,\d{3})*/", $text, $matches);
+        $stringCount = $matches[0];
+
+        $digitsGroups = explode(',', $stringCount);
+
+        $count = '';
+        foreach( $digitsGroups as $dGroup ) {
+            $count .= $dGroup;
+        }
+
+        return $count;
     }
 }

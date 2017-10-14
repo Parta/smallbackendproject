@@ -28,4 +28,4 @@ $kernel = new AppKernel($env, $debug);
 $application = new Application($kernel);
 $application->run($input);
 
-$application->add(new TestCommand);
+$application->add(new TestCommand());
