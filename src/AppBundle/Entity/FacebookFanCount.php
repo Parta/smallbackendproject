@@ -19,10 +19,10 @@ class FacebookFanCount extends Entity
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FacebookPage", inversedBy="pages")
+     * @ORM\ManyToOne(targetEntity="FacebookPage", inversedBy="facebookPages")
      * @ORM\JoinColumn(name="id_page", referencedColumnName="id")
     **/
-    protected $page;
+    protected $facebookPage;
 
     /**
      * @ORM\Column(type="integer", name="value")
@@ -34,8 +34,8 @@ class FacebookFanCount extends Entity
     **/
     protected $date;
 
-    public function setPage(FacebookPage $facebookPage)
+    public function setFacebookPage(FacebookPage $facebookPage)
     {
-        $this->page = $facebookPage;
+        $this->facebookPage = $facebookPage;
     }
 }

@@ -103,11 +103,13 @@ class TestCommand extends Command
         }
 
         $facebookFanCount = new FacebookFanCount();
-        $facebookFanCount->setPage($facebookPage);
+        $facebookFanCount->setFacebookPage($facebookPage);
         $facebookFanCount->set('value', $count);
         $facebookFanCount->set('date', new \DateTime());
 
         $this->em->persist($facebookFanCount);
         $this->em->flush();
+
+        // $fanCounts = $facebookPage->get('facebookFanCounts');
     }
 }

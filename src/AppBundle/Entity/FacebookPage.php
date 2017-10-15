@@ -24,12 +24,12 @@ class FacebookPage extends Entity
     protected $path;
 
     /**
-     * @ORM\OneToMany(targetEntity="FacebookFanCount", mappedBy="page")
+     * @ORM\OneToMany(targetEntity="FacebookFanCount", mappedBy="facebookPage")
     **/
-    protected $fanCounts;
+    protected $facebookFanCounts;
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->facebookFanCounts = new ArrayCollection();
     }
 }
