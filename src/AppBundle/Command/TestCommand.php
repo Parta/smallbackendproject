@@ -2,13 +2,15 @@
 // src/AppBundle/Command/CreateUserCommand.php
 namespace AppBundle\Command;
 
+use AppBundle\Entity\{
+    FacebookPage,
+    FacebookFanCount
+};
+use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler;
-use AppBundle\Entity\FacebookPage;
 
 class TestCommand extends Command
 {
@@ -35,13 +37,6 @@ class TestCommand extends Command
         $this->container = $this->getApplication()->getKernel()->getContainer();
         $this->em = $this->container->get('doctrine.orm.entity_manager');
 
-        $repository = $this->em->getRepository(FacebookPage::class, 1);
-
-        $facebookPage = $repository->findOneByPath("cocacola");
-        print_r($facebookPage->get('path'));
-        exit;
-        // print_r($facebookPage);exit;
-
         $response = $this->client->request('get', '/cocacola');
         $html = $response->getBody()->getContents();
 
@@ -52,9 +47,6 @@ class TestCommand extends Command
         if( $count > -1 ) {
             $this->insertCount($count);
         }
-
-        // $output
-        //     ->writeln($count);
     }
 
     protected function executeCrawling(string $html): string
@@ -98,6 +90,24 @@ class TestCommand extends Command
 
     protected function insertCount(int $count)
     {
+        $facebookPageRepo = $this->em->getRepository(FacebookPage::class);
 
+        $facebookPage = $facebookPageRepo->findOneByPath('cocacola');
+
+        if( $facebookPage === null ) {
+            $facebookPage = new FacebookPage();
+            $facebookPage->set('path', 'cocacola');
+
+            $this->em->persist($facebookPage);
+            $this->em->flush();
+        }
+
+        $facebookFanCount = new FacebookFanCount();
+        $facebookFanCount->setPage($facebookPage);
+        $facebookFanCount->set('value', $count);
+        $facebookFanCount->set('date', new \DateTime());
+
+        $this->em->persist($facebookFanCount);
+        $this->em->flush();
     }
 }

@@ -9,31 +9,27 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="FacebookPages")
  */
 
-class FacebookPage
+class FacebookPage extends Entity
 {
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
     **/
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", name="path", unique=true)
     **/
-    private $path;
+    protected $path;
 
     /**
      * @ORM\OneToMany(targetEntity="FacebookFanCount", mappedBy="page")
     **/
-    private $fanCounts;
+    protected $fanCounts;
 
     public function __construct()
     {
         $this->products = new ArrayCollection();
-    }
-
-    public function get(string $key) {
-        return $this->{$key};
     }
 }
