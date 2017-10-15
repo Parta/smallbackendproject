@@ -53,7 +53,8 @@
         ],
         "post-update-cmd": [
             "@symfony-scripts"
-        ]
+        ],
+        "dev-server": "php bin/console server:run"
     },
     "config": {
         "sort-packages": true
