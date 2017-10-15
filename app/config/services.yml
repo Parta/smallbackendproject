@@ -33,3 +33,6 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    appbundle.command:
+        class: AppBundle\Command
+        arguments: ['@doctrine.orm.entity_manager']

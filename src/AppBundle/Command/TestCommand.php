@@ -8,6 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler;
+use AppBundle\Entity\FacebookPage;
 
 class TestCommand extends Command
 {
@@ -31,6 +32,16 @@ class TestCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->container = $this->getApplication()->getKernel()->getContainer();
+        $this->em = $this->container->get('doctrine.orm.entity_manager');
+
+        $repository = $this->em->getRepository(FacebookPage::class, 1);
+
+        $facebookPage = $repository->findOneByPath("cocacola");
+        print_r($facebookPage->get('path'));
+        exit;
+        // print_r($facebookPage);exit;
+
         $response = $this->client->request('get', '/cocacola');
         $html = $response->getBody()->getContents();
 
@@ -38,11 +49,15 @@ class TestCommand extends Command
 
         $count = $this->parseText($text);
 
-        $output
-            ->writeln($count);
+        if( $count > -1 ) {
+            $this->insertCount($count);
+        }
+
+        // $output
+        //     ->writeln($count);
     }
 
-    protected function executeCrawling($html)
+    protected function executeCrawling(string $html): string
     {
         $crawler = new Crawler($html);
         $text = $crawler
@@ -57,9 +72,12 @@ class TestCommand extends Command
         return $text;
     }
 
-    protected function parseText($text)
+    protected function parseText(string $text): int
     {
         preg_match("/^\d+(\,\d{3})*/", $text, $matches);
+        if( empty($matches) ) {
+            return -1;
+        }
         $stringCount = $matches[0];
 
         $digitsGroups = explode(',', $stringCount);
@@ -69,6 +87,17 @@ class TestCommand extends Command
             $count .= $dGroup;
         }
 
+        try {
+            $count = intval($count);
+        } catch( \Exception $e ) {
+            $count = -1;
+        }
+
         return $count;
+    }
+
+    protected function insertCount(int $count)
+    {
+
     }
 }

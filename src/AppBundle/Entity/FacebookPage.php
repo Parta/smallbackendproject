@@ -32,4 +32,8 @@ class FacebookPage
     {
         $this->products = new ArrayCollection();
     }
+
+    public function get(string $key) {
+        return $this->{$key};
+    }
 }
