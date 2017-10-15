@@ -18,20 +18,15 @@ class FanController extends Controller
      */
     public function indexAction(Request $request)
     {
+
         $em = $this->getDoctrine()->getManager();
 
         $facebookPageRepo = $em->getRepository(FacebookPage::class);
         $facebookPage = $facebookPageRepo->findOneByPath('cocacola');
 
-        $facebookFanCounts = $facebookPage->get('facebookFanCounts');
+        $format = $request->query->get('format');
 
-        $contents = [];
-        foreach( $facebookFanCounts as $fanCount ) {
-            $contents[] = [
-                'id' => $fanCount->get('id'),
-                'value' => $fanCount->get('value')
-            ];
-        }
+        $contents = $facebookPage->formatFacebookFanCounts($format);
 
         return $this->json($contents);
     }

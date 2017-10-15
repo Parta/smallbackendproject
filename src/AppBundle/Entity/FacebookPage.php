@@ -32,4 +32,63 @@ class FacebookPage extends Entity
     {
         $this->facebookFanCounts = new ArrayCollection();
     }
+
+    public function formatFacebookFanCounts(string $format): array
+    {
+        $format = ucfirst($format);
+        switch($format) {
+            case 'Linechart':
+            case 'Table':
+            case 'Multiplepage':
+                return $this->{'format'.$format}();
+            default:
+                return [
+                    'error' => true,
+                    'message' => "$format is not a valid format"
+                ];
+        }
+    }
+
+    protected function formatLinechart(): array
+    {
+        $contents = [
+            'error' => false,
+            'data' => []
+        ];
+        foreach( $this->facebookFanCounts as $fanCount ) {
+            $contents['data'][] = [
+                'date' => $fanCount->get('date')->getTimestamp(),
+                'value' => $fanCount->get('value')
+            ];
+        }
+        return $contents;
+    }
+
+    protected function formatTable(): array
+    {
+        $contents = [
+            'error' => false,
+            'data' => []
+        ];
+        foreach( $this->facebookFanCounts as $fanCount ) {
+            $contents['data'][$fanCount->get('date')->getTimestamp()] = $fanCount->get('value');
+        }
+        return $contents;
+    }
+
+    protected function formatMultiplepage(): array
+    {
+        $contents = [
+            'error' => false,
+            'data' => []
+        ];
+        $path = $this->path;
+        foreach( $this->facebookFanCounts as $fanCount ) {
+            $contents['data'][$path][] = [
+                'date' => $fanCount->get('date')->getTimestamp(),
+                'value' => $fanCount->get('value')
+            ];
+        }
+        return $contents;
+    }
 }
