@@ -1,39 +1,14 @@
 <?php
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\FanPage;
 
+use AppBundle\Entity\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="FacebookPages")
- */
-
-class FacebookPage extends Entity
+abstract class Page extends Entity
 {
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-    **/
-    protected $id;
 
-    /**
-     * @ORM\Column(type="string", name="path", unique=true)
-    **/
-    protected $path;
-
-    /**
-     * @ORM\OneToMany(targetEntity="FacebookFanCount", mappedBy="facebookPage")
-    **/
-    protected $facebookFanCounts;
-
-    public function __construct()
-    {
-        $this->facebookFanCounts = new ArrayCollection();
-    }
-
-    public function formatFacebookFanCounts(string $format): array
+    public function formatFanCounts(string $format): array
     {
         $format = ucfirst($format);
         switch($format) {
@@ -55,7 +30,7 @@ class FacebookPage extends Entity
             'error' => false,
             'data' => []
         ];
-        foreach( $this->facebookFanCounts as $fanCount ) {
+        foreach( $this->fanCounts as $fanCount ) {
             $contents['data'][] = [
                 'date' => $fanCount->get('date')->getTimestamp(),
                 'value' => $fanCount->get('value')
@@ -70,7 +45,7 @@ class FacebookPage extends Entity
             'error' => false,
             'data' => []
         ];
-        foreach( $this->facebookFanCounts as $fanCount ) {
+        foreach( $this->fanCounts as $fanCount ) {
             $contents['data'][$fanCount->get('date')->getTimestamp()] = $fanCount->get('value');
         }
         return $contents;
@@ -83,7 +58,7 @@ class FacebookPage extends Entity
             'data' => []
         ];
         $path = $this->path;
-        foreach( $this->facebookFanCounts as $fanCount ) {
+        foreach( $this->fanCounts as $fanCount ) {
             $contents['data'][$path][] = [
                 'date' => $fanCount->get('date')->getTimestamp(),
                 'value' => $fanCount->get('value')

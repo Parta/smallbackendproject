@@ -1,7 +1,8 @@
 <?php
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\FanPage\Facebook;
 
-use AppBundle\Entity\FacebookPage;
+use AppBundle\Entity\Entity;
+use AppBundle\Entity\FanPage\FanCount;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="FacebookFanCounts")
  */
 
-class FacebookFanCount extends Entity
+class FacebookFanCount extends FanCount
 {
     /**
      * @ORM\Column(type="integer")
@@ -19,10 +20,10 @@ class FacebookFanCount extends Entity
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FacebookPage", inversedBy="facebookPages")
+     * @ORM\ManyToOne(targetEntity="FacebookPage", inversedBy="pages")
      * @ORM\JoinColumn(name="id_page", referencedColumnName="id")
     **/
-    protected $facebookPage;
+    protected $page;
 
     /**
      * @ORM\Column(type="integer", name="value")
@@ -33,9 +34,4 @@ class FacebookFanCount extends Entity
      * @ORM\Column(type="datetime", name="date")
     **/
     protected $date;
-
-    public function setFacebookPage(FacebookPage $facebookPage)
-    {
-        $this->facebookPage = $facebookPage;
-    }
 }
