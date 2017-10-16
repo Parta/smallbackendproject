@@ -22,6 +22,16 @@ class FanController extends Controller
         return $this->json($contents);
     }
 
+    # If we had a crawler and DB tables for twitter, all we would have to do is to uncomment this function
+    # (and add the commented routing paramters above it)
+    /***
+    public function twitterAction(Request $request, $path)
+    {
+        $contents = $this->renderFanCounts($request, TwitterPage::class, $path);
+        return $this->json($contents);
+    }
+    ***/
+
     private function renderFanCounts(Request $request, string $pageClass, string $path): array
     {
         $em = $this->getDoctrine()->getManager();
