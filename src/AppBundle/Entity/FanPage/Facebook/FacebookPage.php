@@ -29,9 +29,4 @@ class FacebookPage extends Page
      * @ORM\OneToMany(targetEntity="FacebookFanCount", mappedBy="page")
     **/
     protected $fanCounts;
-
-    public function __construct()
-    {
-        $this->fanCounts = new ArrayCollection();
-    }
 }

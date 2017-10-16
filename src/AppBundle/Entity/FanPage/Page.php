@@ -7,6 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 abstract class Page extends Entity
 {
+    public function __construct()
+    {
+        $this->fanCounts = new ArrayCollection();
+    }
 
     public function formatFanCounts(string $format): array
     {

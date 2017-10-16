@@ -5,7 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Debug\Debug;
 
-use AppBundle\Command\TestCommand;
+use AppBundle\Command\FacebookCrawler;
 use Doctrine\ORM\EntityManagerInterface;
 
 // if you don't want to setup permissions the proper way, just uncomment the following PHP line
@@ -29,4 +29,4 @@ $kernel = new AppKernel($env, $debug);
 $application = new Application($kernel);
 $application->run($input);
 
-$application->add(new TestCommand);
+$application->add(new FacebookCrawler);

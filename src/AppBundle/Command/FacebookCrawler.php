@@ -1,8 +1,7 @@
 <?php
-// src/AppBundle/Command/CreateUserCommand.php
 namespace AppBundle\Command;
 
-use AppBundle\Entity\{
+use AppBundle\Entity\FanPage\Facebook\{
     FacebookPage,
     FacebookFanCount
 };
@@ -12,17 +11,21 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DomCrawler\Crawler;
 
-class TestCommand extends Command
+class FacebookCrawler extends PageCrawler
 {
     protected $client;
 
+    protected $pageClass = FacebookPage::class;
+    protected $fanCountClass = FacebookFanCount::class;
+
     public function __construct()
     {
-        parent::__construct();
 
         $this->client = new Client([
             'base_uri' => 'https://www.facebook.com'
         ]);
+
+        parent::__construct();
     }
 
     protected function configure()
@@ -32,26 +35,10 @@ class TestCommand extends Command
             ->setDescription("Just a test command");
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        $this->container = $this->getApplication()->getKernel()->getContainer();
-        $this->em = $this->container->get('doctrine.orm.entity_manager');
-
-        $response = $this->client->request('get', '/cocacola');
-        $html = $response->getBody()->getContents();
-
-        $text = $this->executeCrawling($html);
-
-        $count = $this->parseText($text);
-
-        if( $count > -1 ) {
-            $this->insertCount($count);
-        }
-    }
-
     protected function executeCrawling(string $html): string
     {
         $crawler = new Crawler($html);
+
         $text = $crawler
             ->filter('body #pages_side_column div._4-u2._3xaf._4-u8')
             ->first()
@@ -86,30 +73,5 @@ class TestCommand extends Command
         }
 
         return $count;
-    }
-
-    protected function insertCount(int $count)
-    {
-        $facebookPageRepo = $this->em->getRepository(FacebookPage::class);
-
-        $facebookPage = $facebookPageRepo->findOneByPath('cocacola');
-
-        if( $facebookPage === null ) {
-            $facebookPage = new FacebookPage();
-            $facebookPage->set('path', 'cocacola');
-
-            $this->em->persist($facebookPage);
-            $this->em->flush();
-        }
-
-        $facebookFanCount = new FacebookFanCount();
-        $facebookFanCount->setFacebookPage($facebookPage);
-        $facebookFanCount->set('value', $count);
-        $facebookFanCount->set('date', new \DateTime());
-
-        $this->em->persist($facebookFanCount);
-        $this->em->flush();
-
-        // $fanCounts = $facebookPage->get('facebookFanCounts');
     }
 }
