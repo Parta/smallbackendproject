@@ -5,7 +5,6 @@ use AppBundle\Entity\FanPage\Facebook\{
     FacebookPage,
     FacebookFanCount
 };
-use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -13,7 +12,6 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class FacebookCrawler extends PageCrawler
 {
-    protected $client;
 
     protected $pageClass = FacebookPage::class;
     protected $fanCountClass = FacebookFanCount::class;
@@ -21,18 +19,17 @@ class FacebookCrawler extends PageCrawler
     public function __construct()
     {
 
-        $this->client = new Client([
-            'base_uri' => 'https://www.facebook.com'
-        ]);
-
-        parent::__construct();
+        $baseUri = 'https://www.facebook.com';
+        parent::__construct($baseUri);
     }
 
     protected function configure()
     {
         $this
-            ->setName("test")
-            ->setDescription("Just a test command");
+            ->setName("facebook-crawler")
+            ->setDescription("Crawls facebook fan pages to extract and insert number of followers.");
+
+        parent::configure();
     }
 
     protected function executeCrawling(string $html): string

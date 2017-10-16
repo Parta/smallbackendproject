@@ -14,20 +14,27 @@ use Symfony\Component\HttpFoundation\{
 class FanController extends Controller
 {
     /**
-     * @Route("/facebook/fans")
+     * @Route("/fans/facebook/{path}")
      */
-    public function facebookAction(Request $request)
+    public function facebookAction(Request $request, $path)
     {
-        $contents = $this->renderFanCounts($request, FacebookPage::class);
+        $contents = $this->renderFanCounts($request, FacebookPage::class, $path);
         return $this->json($contents);
     }
 
-    private function renderFanCounts(Request $request, string $pageClass)
+    private function renderFanCounts(Request $request, string $pageClass, string $path): array
     {
         $em = $this->getDoctrine()->getManager();
 
         $pageRepo = $em->getRepository($pageClass);
-        $page = $pageRepo->findOneByPath('cocacola');
+        $page = $pageRepo->findOneByPath($path);
+
+        if( $page === null ) {
+            return [
+                'error' => true,
+                'message' => "No data found for $path"
+            ];
+        }
 
         $format = $request->query->get('format');
 
