@@ -3,6 +3,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\FanPage\Page;
 use AppBundle\Entity\FanPage\Facebook\FacebookPage;
+use AppBundle\Entity\FanPage\Twitter\TwitterPage;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,15 +23,14 @@ class FanController extends Controller
         return $this->json($contents);
     }
 
-    # If we had a crawler and DB tables for twitter, all we would have to do is to uncomment this function
-    # (and add the commented routing paramters above it)
-    /***
+    /**
+     * @Route("/fans/twitter/{path}")
+     */
     public function twitterAction(Request $request, $path)
     {
         $contents = $this->renderFanCounts($request, TwitterPage::class, $path);
         return $this->json($contents);
     }
-    ***/
 
     private function renderFanCounts(Request $request, string $pageClass, string $path): array
     {
@@ -39,6 +39,7 @@ class FanController extends Controller
         $pageRepo = $em->getRepository($pageClass);
         $page = $pageRepo->findOneByPath($path);
 
+        // if no row has been found for the given path in table {Facebook|Twitter}Pages, return an error message
         if( $page === null ) {
             return [
                 'error' => true,
@@ -46,7 +47,8 @@ class FanController extends Controller
             ];
         }
 
-        $format = $request->query->get('format');
+        // if no paramter has been passed in url, set it to 'linechart' by default
+        $format = $request->query->get('format') ?? 'linechart';
 
         $contents = $page->formatFanCounts($format);
 
