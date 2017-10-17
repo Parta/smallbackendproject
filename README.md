@@ -1,4 +1,5 @@
-#Questions
+Questions
+=========
 - The only change to crawl 100 000 Facebook pages would be adding a loop to $path_to_project$\app\Console\Kernel.php
 schedule function (see already existing logic). I added 3 different pages. Scheduled jobs are easy configurable - to set the schedule to every 10 minutes all you need to do is change 'hourly' to 'everyTenMinutes':
 
@@ -21,19 +22,24 @@ schedule function (see already existing logic). I added 3 different pages. Sched
   - Allow multiple command instances and cron job locking to avoid duplications
  
 
-#Command
-##Crontab command:
+Command
+=======
+Crontab command:
+---------------
  - \* \* \* \* \* php $path_to_project$/artisan schedule:run
  Add this command to your crontab and preceding by five stars.
  This will run the Kernel.php schedule function and all specified cron jobs
 
-##Cron command:
+Cron command:
+-------------
  - php artisan crawler:hourly {page_name}
  This command allows to run cron job manually from command line.
  You need to be in the project folder.
  
- #API
- #Access API
+ API
+ ===
+ Access API
+ ----------
   URL: {domain}/api/fans
   
   Additional GET parameters: (returned in the API response under "filters")
@@ -43,13 +49,15 @@ schedule function (see already existing logic). I added 3 different pages. Sched
     - limit - number of results per page (in case of multipage - total number of mixed results)
     - offset - works only if limit applied
  
-
-###Examples:
+Examples:
+---------
     
-  ####Request:
+  Request:
+  --------
    - http://smallbackendproject/api/fans?format=table&limit=20&offset=500 
   
-  ####Response 
+  Response
+  -------- 
  ```json
 {
    "error": false,
@@ -122,10 +130,12 @@ schedule function (see already existing logic). I added 3 different pages. Sched
 ```
          
 
- ####Request:
+ Request:
+ --------
    - http://smallbackendproject/api/fans?format=linechart&limit=20&offset=500 
   
-  ####Response 
+  Response:
+  --------- 
 ```json
  {
     "error": false,
@@ -257,11 +267,13 @@ schedule function (see already existing logic). I added 3 different pages. Sched
  }
 ```
   
-  ####Request:
+  Request:
+  --------
   
    - http://smallbackendproject/api/fans?format=multipage&limit=20&offset=500
    
-   ####Response:
+   Response:
+   ---------
    
 ```json
 {
@@ -454,6 +466,7 @@ schedule function (see already existing logic). I added 3 different pages. Sched
 }
 ```
 
-##Database table is in the fans_likes.sql file in the project root
+Database table is in the fans_likes.sql file in the project root
+------------
   
  
