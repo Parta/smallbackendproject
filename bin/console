@@ -5,7 +5,10 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Debug\Debug;
 
-use AppBundle\Command\FacebookCrawler;
+use AppBundle\Command\{
+    FacebookCrawler,
+    TwitterCrawler
+};
 use Doctrine\ORM\EntityManagerInterface;
 
 // if you don't want to setup permissions the proper way, just uncomment the following PHP line
@@ -30,3 +33,4 @@ $application = new Application($kernel);
 $application->run($input);
 
 $application->add(new FacebookCrawler);
+$application->add(new TwitterCrawler);

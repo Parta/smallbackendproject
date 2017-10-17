@@ -33,6 +33,7 @@ abstract class PageCrawler extends Command
         $this->em = $this->container->get('doctrine.orm.entity_manager');
         $this->logger = $this->container->get('logger');
 
+        // url path of the page passed as argument in console
         $this->path = $input->getArgument('path');
 
         // make curl with GuzzleHttpClient to retrieve page's html content
