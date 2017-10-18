@@ -18,7 +18,6 @@ class FacebookCrawler extends PageCrawler
 
     public function __construct()
     {
-
         $baseUri = 'https://www.facebook.com';
         parent::__construct($baseUri);
     }

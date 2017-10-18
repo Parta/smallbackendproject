@@ -17,7 +17,7 @@ class FanController extends Controller
     /**
      * @Route("/fans/facebook/{path}")
      */
-    public function facebookAction(Request $request, $path)
+    public function facebookAction(Request $request, string $path)
     {
         $contents = $this->renderFanCounts($request, FacebookPage::class, $path);
         return $this->json($contents);
@@ -26,7 +26,7 @@ class FanController extends Controller
     /**
      * @Route("/fans/twitter/{path}")
      */
-    public function twitterAction(Request $request, $path)
+    public function twitterAction(Request $request, string $path)
     {
         $contents = $this->renderFanCounts($request, TwitterPage::class, $path);
         return $this->json($contents);
