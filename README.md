@@ -18,8 +18,8 @@ https://console.firebase.google.com/project/{your_database_id}/authentication/us
 
 I recommand to instal pip and virtualenv (mkvirualenv on windos plateforme)
 
-The Crawler 
-
+The Crawler
+======================================
 To install the project run the command:
 pip install -r requirements.txt requirements.dev.txt
 
@@ -30,7 +30,7 @@ python src/crawler.py --uri=crawler/fans_count --page_id=pepsi --plateforme=face
 You can see the data structure by viewing the image <data/database-structure.png> 
 
 The api
-
+======================================
 A django web site was created for this purpose. The root directory is <parta_site>
 
 The code for my simple api is located on <parta_site/crawler_api/views.py>
@@ -38,6 +38,7 @@ The code for my simple api is located on <parta_site/crawler_api/views.py>
 To get the json structure
 http://127.0.0.1:8000/crawler/get/?uri=fans_count&page_id={page_id}&plateforme=facebook&format=multiplepage
 
-The format accepted is: multipage, table, linechart
-The only uri processed is fans_count
-The plateforme supported is facebook
+Here the accepted parameters:
+- The format accepted is: multipage, table, linechart
+- The only uri processed is fans_count
+- The plateforme supported is facebook
