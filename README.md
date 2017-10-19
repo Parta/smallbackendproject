@@ -32,3 +32,12 @@ You can see the data structure by viewing the image <data/database-structure.png
 The api
 
 A django web site was created for this purpose. The root directory is <parta_site>
+
+The code for my simple api is located on <parta_site/crawler_api/views.py>
+
+To get the json structure
+http://127.0.0.1:8000/crawler/get/?uri=fans_count&page_id={page_id}&plateforme=facebook&format=multiplepage
+
+The format accepted is: multipage, table, linechart
+The only uri processed is fans_count
+The plateforme supported is facebook
