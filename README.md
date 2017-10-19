@@ -1,63 +1,67 @@
- #engagementlabs Back-End Project 
-
-Object:
+Overview:
 ======================================
-Create a PHP 5.6+ application that hourly crawls the evolution of fans of the Facebook Coca-Cola page (https://www.facebook.com/cocacola).  
-Answer some questions on how to make this system scale (see Deliverable section.)
+This project has the purpose to retreive data from web page and push the data into database (Firebase)
 
+The project is composed with two part: crawler and api
+- The crawler get the data and push it into the databse. The code is located into <src> directory.
+- The api get the data from the database and display it using a specific format. the api is an app inside a Django project inside <parta_site> directory.
 
-Rules:
+Installation:
 ======================================
+The project use Firebase as realtime database. Please create a database by following this link:
+https://console.firebase.google.com/
 
-(In the text below, {fb_page_id} = "cocacola")
+Inside <config> directory, copy the file <example.config.yaml> and rename it to config.yaml. Put your credentials in the corresponding field
 
-- The crawling robot must be executed by a cron job every hour via a command line such as (but not necessarily) :  
-php index.php --uri=crawler/fans --page_id={fb_page_id}
+For security reason you have to define an Email/Password authentification for your database. Use this link where {your_database_id} is the database identifier for your database
+https://console.firebase.google.com/project/{your_database_id}/authentication/users
 
-- The API should return a JSON object via a URL such as (but not necessarily) :  
-http://localhost/myframework/get/fans?page_id={fb_page_id}&format=linechart 
+I recommand to instal pip and virtualenv (mkvirualenv on windos plateforme)
 
-- The API should be able to take a format parameter that change the structure of the JSON object outputed
-
-- There will be 3 format: linechart, table, multiplepage. There's json files in this project to show the expected outputs
-
-- Database technology, data structure and application architecture is up to you.
-
-
-
-Deliverable:
+The Crawler
 ======================================
-- Fork this project
+To install the project run the command:
+pip install -r requirements.txt requirements.dev.txt
 
-- Push to your forked repository, containing your PHP files, cron file, an export of your database
+To populate the database for pepsi 'facebook page run the command:
 
-- In your repository wiki, answer the questions and put any additionnal informations
+python src/crawler.py --uri=crawler/fans_count --page_id=pepsi --plateforme=facebook
 
-- Create a pull request to submit your project.
+You can see the data structure by viewing the image <data/database-structure.png> 
 
-- Make sure your repository is publicly accessible
+The api
+======================================
+A django web site was created for this purpose. The root directory is <parta_site>
+
+The code for my simple api is located on <parta_site/crawler_api/views.py>
+
+To get the json structure
+http://127.0.0.1:8000/crawler/get/?uri=fans_count&page_id={page_id}&plateforme=facebook&format=multiplepage
+
+Here the accepted parameters:
+- The format accepted is: multipage, table, linechart
+- The only uri processed is fans_count
+- The plateforme supported is facebook
+
 
 Question:
 ======================================
 - Let us imagine we now have 100.000 Facebook pages to get fans count of, every 10 minutes. Please provide a quick answer to the following questions :
     - What would you change in your architecture to cope with the load ?
+    It ll good idea to install a queue system and add more servers. Each server  will run a bunch of queries. If we are limited on servers using Nodejs can be an alternative.
+
     - What kind of other possible problems would you think of ?
+    The page structure changes can break the app. Also if the server run on Italy for example, Facebook will return a localized page for the given page. Then the parser will never  find the reruired data
+
     - How would you propose to control data quality ?
+    Verify the structure of the page. Add try catch and logging. Figure out all possible server variables that can affect the programm and fix them
 
-- Any other comments you might find useful
 
-
-Evaluation:
+Comments:
 ======================================
+For the readability I didn't any any comment but I pay more attentionon the crawler module (<src/parta>) interacting with Firebase.
+Why I used Python? It was an opportunity to refresh my knowledges.
+Why django? To learn new framework
+Why Firebase? No headache with database. Realtime database. Free and available worldwide.
 
-- We will evaluate if the requirements above work as expected
-
-- We will evaluate the structure of the application and the logic behind the separation of concerns. For example in the eventuality of adding other crawlers such as crawling Twitter followers of a Twitter account.
-
-- We will evaluate overall code quality and readability
-
-- We will evaluate the answers to the question listed in the Deliverable section and other comments that you may have found useful
-
-
-
-Cheers!
+Thank you for your time and for this opportunity to deal with a real world problem!
