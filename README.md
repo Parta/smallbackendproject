@@ -29,4 +29,6 @@ python src/crawler.py --uri=crawler/fans_count --page_id=pepsi --plateforme=face
 
 You can see the data structure by viewing the image <data/database-structure.png> 
 
+The api
 
+A django web site was created for this purpose. The root directory is <parta_site>
