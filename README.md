@@ -42,3 +42,26 @@ Here the accepted parameters:
 - The format accepted is: multipage, table, linechart
 - The only uri processed is fans_count
 - The plateforme supported is facebook
+
+
+Question:
+======================================
+- Let us imagine we now have 100.000 Facebook pages to get fans count of, every 10 minutes. Please provide a quick answer to the following questions :
+    - What would you change in your architecture to cope with the load ?
+    It ll good idea to install a queue system and add more servers. Each server  will run a bunch of queries. If we are limited on servers using Nodejs can be an alternative.
+
+    - What kind of other possible problems would you think of ?
+    The page structure changes can break the app. Also if the server run on Italy for example, Facebook will return a localized page for the given page. Then the parser will never  find the reruired data
+
+    - How would you propose to control data quality ?
+    Verify the structure of the page. Add try catch and logging. Figure out all possible server variables that can affect the programm and fix them
+
+
+Comments:
+======================================
+For the readability I didn't any any comment but I pay more attentionon the crawler module (<src/parta>) interacting with Firebase.
+Why I used Python? It was an opportunity to refresh my knowledges.
+Why django? To learn new framework
+Why Firebase? No headache with database. Realtime database. Free and available worldwide.
+
+Thank you for your time and for this opportunity to deal with a real world problem!
