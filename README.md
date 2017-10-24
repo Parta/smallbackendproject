@@ -43,8 +43,8 @@ Cron command:
   URL: {domain}/api/fans
   
   Additional GET parameters: (returned in the API response under "filters")
-    - format (csv/json) if csv applied the rest of the filters are not applicable/ignored
-    - type (multipage/table/linechart) default is multipage
+    - output (csv/json) if csv applied the rest of the filters are not applicable/ignored
+    - format (multipage/table/linechart) default is multipage
     - page_name (facebook page id) - cocacola/apple/intel available in DB
     - limit - number of results per page (in case of multipage - total number of mixed results)
     - offset - works only if limit applied
