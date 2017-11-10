@@ -2,7 +2,7 @@
 
 Object:
 ======================================
-Create a PHP 5.6+ application that hourly crawls the evolution of fans of the Facebook Coca-Cola page (https://www.facebook.com/cocacola).  
+Create a PHP 5.6+ application that pulls the evolution of fans of the Facebook Coca-Cola page hourly (https://www.facebook.com/cocacola).  
 Answer some questions on how to make this system scale (see Deliverable section.)
 
 
@@ -11,8 +11,8 @@ Rules:
 
 (In the text below, {fb_page_id} = "cocacola")
 
-- The crawling robot must be executed by a cron job every hour via a command line such as (but not necessarily) :  
-php index.php --uri=crawler/fans --page_id={fb_page_id}
+- The data collection robot must be executed by a cron job every hour via a command line such as (but not necessarily) :  
+php index.php --uri=collect/fans --page_id={fb_page_id}
 
 - The API should return a JSON object via a URL such as (but not necessarily) :  
 http://localhost/myframework/get/fans?page_id={fb_page_id}&format=linechart 
