@@ -1,4 +1,4 @@
- #engagementlabs Back-End Project 
+#engagementlabs Back-End Project
 
 Object:
 ======================================
@@ -15,7 +15,7 @@ Rules:
 php index.php --uri=collect/fans --page_id={fb_page_id}
 
 - The API should return a JSON object via a URL such as (but not necessarily) :  
-http://localhost/myframework/get/fans?page_id={fb_page_id}&format=linechart 
+http://localhost/myframework/get/fans?page_id={fb_page_id}&format=linechart
 
 - The API should be able to take a format parameter that change the structure of the JSON object outputed
 
@@ -40,9 +40,9 @@ Deliverable:
 Question:
 ======================================
 - Let us imagine we now have 100.000 Facebook pages to get fans count of, every 10 minutes. Please provide a quick answer to the following questions :
-    - What would you change in your architecture to cope with the load ?
-    - What kind of other possible problems would you think of ?
-    - How would you propose to control data quality ?
+   - What would you change in your architecture to cope with the load ?
+   - What kind of other possible problems would you think of ?
+   - How would you propose to control data quality ?
 
 - Any other comments you might find useful
 
