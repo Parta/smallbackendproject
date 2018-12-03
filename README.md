@@ -2,26 +2,35 @@
 
 Object:
 ======================================
-Create a PHP 5.6+ application that pulls the evolution of fans of the Facebook Coca-Cola page hourly (https://www.facebook.com/cocacola).  
+Create a PHP 7.0+ application that pulls the evolution of the Apple Watch and Fitbit during the period of september 2018.  
 Answer some questions on how to make this system scale (see Deliverable section.)
-
 
 Rules:
 ======================================
 
-(In the text below, {fb_page_id} = "cocacola")
+- You must be able to login to the api by using this credentials :
+Endpoint : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/getToken
+Username:
+Password:
+Result Expected : Api result by giving a token
 
-- The data collection robot must be executed by a cron job every hour via a command line such as (but not necessarily) :  
-php index.php --uri=collect/fans --page_id={fb_page_id}
+- call the api to get the general info for the Apple Watch and Fitbit
+Endpoint : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/search
+This endpoint is only available if you have the right token
+{Authorization: Bearer {token}}
 
-- The API should return a JSON object via a URL such as (but not necessarily) :  
-http://localhost/myframework/get/fans?page_id={fb_page_id}&format=linechart 
+- Save the information in your database
 
-- The API should be able to take a format parameter that change the structure of the JSON object outputed
+- send a request to the api to get the score for each brand and make them possible to sort by week or month
+Endpoint : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/items?ids={id,id}&metrics=offline.scoreVolume.value%2Coffline.scoreInfluence.value%2Coffline.scoreBrandSharing.value%2Coffline.scoreSentiment.value&output_type=overtime&from={timesptamp}&to={timesptamp}&interval={interval}
+This endpoint is only available if you have the right token
+{Authorization: Bearer {token}}
 
-- There will be 3 format: linechart, table, multiplepage. There's json files in this project to show the expected outputs
+- save those info on your database
 
-- Database technology, data structure and application architecture is up to you.
+- Create an endpoint to have get access of the score data.
+
+- Database technology, data structure and application architecture is up to you but you need to use Symfony and the library FriendsOfSymfony (https://github.com/FriendsOfSymfony)
 
 
 
@@ -39,12 +48,9 @@ Deliverable:
 
 Question:
 ======================================
-- Let us imagine we now have 100.000 Facebook pages to get fans count of, every 10 minutes. Please provide a quick answer to the following questions :
-    - What would you change in your architecture to cope with the load ?
-    - What kind of other possible problems would you think of ?
-    - How would you propose to control data quality ?
+- Can you please justify your choice about the database, the data structure and application?
 
-- Any other comments you might find useful
+- If you don't have to use the library FriendsOfSymfony or even Symfony, Which framework/library you will use to make the test and why?
 
 
 Evaluation:
