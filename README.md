@@ -9,24 +9,33 @@ Rules:
 ======================================
 
 - You must be able to login to the api by using this credentials :
+
 Endpoint : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/getToken
+
 Username:
+
 Password:
+
 Result Expected : Api result by giving a token
 
 - call the api to get the general info for the Apple Watch and Fitbit
+
 Endpoint : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/search
-This endpoint is only available if you have the right token
+
+This endpoint is only available if you have the right token:
+
 {Authorization: Bearer {token}}
 
-- Save the information in your database
+- Save those infos on your database
 
-- send a request to the api to get the score for each brand and make them possible to sort by week or month
+- Send a request to the api to get the score for each brand and make them possible to sort by week or month
+
 Endpoint : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/items?ids={id,id}&metrics=offline.scoreVolume.value%2Coffline.scoreInfluence.value%2Coffline.scoreBrandSharing.value%2Coffline.scoreSentiment.value&output_type=overtime&from={timesptamp}&to={timesptamp}&interval={interval}
 This endpoint is only available if you have the right token
+
 {Authorization: Bearer {token}}
 
-- save those info on your database
+- Save those infos on your database
 
 - Create an endpoint to have get access of the score data.
 
