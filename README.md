@@ -3,7 +3,7 @@
 
 Global Object:
 ======================================
-The objective of this project is to create a platform to see a linechart data visualization of the US brands "7UP" and "A&W Root Beer" during the period of september 2018 sort by weekly interval.
+The objective of this project is to create a platform to see a linechart data visualization of the US brands "7UP" and "A&W Root Beer" during the period of september 2018 and on a weekly interval.
 It require you to login with valid credential and after a successful login, you will redirect to the linechart page.
 
 Object:
@@ -15,7 +15,7 @@ Backend :
 - create endpoint(s) to get the Brands data.
 
 Frontend rules:
-The application will need to be made with a Backbone  framework.
+The application will need to be made with a Backbone framework.
 We require the creation of 2 pages
 - A login page
 - A page to display or graph
@@ -25,9 +25,12 @@ Resources :
 ======================================
 Backend:
 - Login token : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/getToken
-Username:
 
-Password:
+grant_type: client_credentials
+
+client_id: 4_458qvdwmkiec008o8c4s8swwkw44ck4k4g0wsk0cwg4ooggc08
+
+client_secret: 149bbor69msgooss484wsskws40ow8os84swgcwo8ssc0gowog
 
 Expect Results : see login_exemple.json
 
@@ -37,8 +40,15 @@ The endpoint need a valid token to be accessible:
 Header exemple: 
 {Authorization: Bearer {token}}
 
+Expect Results : see item_list_exemple.json
+
 - list of metrics value by brand ids : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/items?ids={id,id}&metrics=offline.scoreVolume.value&output_type=overtime&from={timesptamp}&to={timesptamp}&interval={interval}
-Internal value could be week or month.
+Internal value could be week or month. 
+The endpoint need a valid token to be accessible:
+Header exemple: 
+{Authorization: Bearer {token}}
+
+Expect Results : see overtime_exemple.json
 
 Rules:
 ======================================
