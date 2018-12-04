@@ -28,29 +28,26 @@ Backend:
 
 Credential :
 
-grant_type: client_credentials
+- grant_type: client_credentials
 
-client_id: 4_458qvdwmkiec008o8c4s8swwkw44ck4k4g0wsk0cwg4ooggc08
+- client_id: 4_458qvdwmkiec008o8c4s8swwkw44ck4k4g0wsk0cwg4ooggc08
 
-client_secret: 149bbor69msgooss484wsskws40ow8os84swgcwo8ssc0gowog
+- client_secret: 149bbor69msgooss484wsskws40ow8os84swgcwo8ssc0gowog
 
-Expect Results : see login_exemple.json
+- Expect Results : see login_exemple.json
 
-- items List : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/search. 
+items List : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/search. 
 
-The endpoint need a valid token to be accessible:
-Header exemple: 
-{Authorization: Bearer {token}}
+- The endpoint need a valid token to be accessible:
+- Header exemple: {Authorization: Bearer {token}}
 
 Expect Results : see item_list_exemple.json
 
-- list of metrics value by brand ids : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/items?ids={id,id}&metrics=offline.scoreVolume.value&output_type=overtime&from={timesptamp}&to={timesptamp}&interval={interval}
-Internal value could be week or month. 
-The endpoint need a valid token to be accessible:
-Header exemple: 
-{Authorization: Bearer {token}}
-
-Expect Results : see overtime_exemple.json
+list of metrics value by brand ids : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/items?ids={id,id}&metrics=offline.scoreVolume.value&output_type=overtime&from={timesptamp}&to={timesptamp}&interval={interval}
+- Internal value could be week or month. 
+- The endpoint need a valid token to be accessible:
+- Header exemple: {Authorization: Bearer {token}}
+- Expect Results : see overtime_exemple.json
 
 Rules:
 ======================================
