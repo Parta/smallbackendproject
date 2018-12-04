@@ -140,7 +140,7 @@ Frontend:
 
 - Bonus points :
 - if you use the backbone validation plugin
-- if the graph is flexible for a different day format (weekly and monthly interval)
+- if the graph is flexible for a different day format (weekly or monthly interval)
 
 
 Cheers!
