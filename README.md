@@ -14,8 +14,8 @@ Backend :
 - Create a login endpoint for your platform.
 - create endpoint(s) to get the Brands data.
 
-Frontend rules:
-The application will need to be made with a Backbone framework.
+Frontend:
+- The application will need to be made with a Backbone framework.
 We require the creation of 2 pages
 - A login page
 - A page to display or graph
@@ -26,7 +26,7 @@ Resources :
 Backend:
 - Login token : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/getToken
 
-Credential :
+- Credential :
 
 - grant_type: client_credentials
 
