@@ -9,7 +9,7 @@ It require you to login with valid credential and after a successful login, you 
 Object:
 ======================================
 Backend :
-- Use Evapro API to get the data of the US brands 7UP and A&W Root Beer. (see Resources section bellow)
+- Use the API from EngagementLabs to get the data of the US brands 7UP and A&W Root Beer. (see Resources section bellow)
 - All data needs to be save on your database.
 - Create a login endpoint for your platform.
 - create endpoint(s) to get the Brands data.
