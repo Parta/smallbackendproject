@@ -26,6 +26,8 @@ Resources :
 Backend:
 - Login token : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/getToken
 
+Credential :
+
 grant_type: client_credentials
 
 client_id: 4_458qvdwmkiec008o8c4s8swwkw44ck4k4g0wsk0cwg4ooggc08
