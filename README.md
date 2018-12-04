@@ -23,8 +23,7 @@ We require the creation of 2 pages
 
 Resources :
 ======================================
-Backend:
-- Login token : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/getToken
+Login token : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/getToken
 
 - Credential :
 
@@ -40,8 +39,7 @@ items List : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/search.
 
 - The endpoint need a valid token to be accessible:
 - Header exemple: {Authorization: Bearer {token}}
-
-Expect Results : see item_list_exemple.json
+- Expect Results : see item_list_exemple.json
 
 list of metrics value by brand ids : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/items?ids={id,id}&metrics=offline.scoreVolume.value&output_type=overtime&from={timesptamp}&to={timesptamp}&interval={interval}
 - Internal value could be week or month. 
