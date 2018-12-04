@@ -1,0 +1,28 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 70905,
+      "bundle_type": "totalsocial",
+      "name": "7UP",
+      "name_search": "7UP",
+      "country": "US",
+      "project": "",
+      "type": "item_total_social"
+    },
+    {
+      "id": 70933,
+      "bundle_type": "totalsocial",
+      "name": "A&W Root Beer",
+      "name_search": "A&W Root Beer",
+      "country": "US",
+      "project": "",
+      "type": "item_total_social"
+    }
+  ],
+  "metadata": {
+    "count": 2,
+    "startDate": 1442188800,
+    "endDate": 1543190399
+  }
+}

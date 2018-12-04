@@ -1,46 +1,82 @@
  #engagementlabs Back-End Project 
 
+
+Global Object:
+======================================
+The objective of this project is to create a platform to see a linechart data visualization of the US brands "7UP" and "A&W Root Beer" during the period of september 2018 sort by weekly interval.
+It require you to login with valid credential and after a successful login, you will redirect to the linechart page.
+
 Object:
 ======================================
-Create a PHP 7.0+ application that pulls the evolution of the Apple Watch and Fitbit during the period of september 2018.  
-Answer some questions on how to make this system scale (see Deliverable section.)
+Backend :
+- Use Evapro API to get the data of the US brands 7UP and A&W Root Beer. (see Resources section bellow)
+- All data needs to be save on your database.
+- Create a login endpoint for your platform.
+- create endpoint(s) to get the Brands data.
 
-Rules:
+Frontend rules:
+The application will need to be made with a Backbone  framework.
+We require the creation of 2 pages
+- A login page
+- A page to display or graph
+(more details will follow)
+
+Resources :
 ======================================
-
-- You must be able to login to the api by using this credentials :
-
-Endpoint : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/getToken
-
+Backend:
+- Login token : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/getToken
 Username:
 
 Password:
 
-Result Expected : Api result by giving a token
+Expect Results : see login_exemple.json
 
-- call the api to get the general info for the Apple Watch and Fitbit
+- items List : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/search. 
 
-Endpoint : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/search
-
-This endpoint is only available if you have the right token:
-
+The endpoint need a valid token to be accessible:
+Header exemple: 
 {Authorization: Bearer {token}}
 
-- Save those infos on your database
+- list of metrics value by brand ids : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/items?ids={id,id}&metrics=offline.scoreVolume.value&output_type=overtime&from={timesptamp}&to={timesptamp}&interval={interval}
+Internal value could be week or month.
 
-- Send a request to the api to get the score for each brand and make them possible to sort by week or month
-
-Endpoint : https://evapro-ui-production.engagementlabs.com/api/v3.0.1/items?ids={id,id}&metrics=offline.scoreVolume.value%2Coffline.scoreInfluence.value%2Coffline.scoreBrandSharing.value%2Coffline.scoreSentiment.value&output_type=overtime&from={timesptamp}&to={timesptamp}&interval={interval}
-This endpoint is only available if you have the right token
-
-{Authorization: Bearer {token}}
-
-- Save those infos on your database
-
-- Create an endpoint to have get access of the score data.
+Rules:
+======================================
+Back-end :
 
 - Database technology, data structure and application architecture is up to you but you need to use Symfony and the library FriendsOfSymfony (https://github.com/FriendsOfSymfony)
 
+- Endpoint(s) need to return a json.
+
+Frontend:
+
+Highest Priority:
+- The markup for the login should be displayed in a layout view’s region
+
+- We would really like to see a routing and navigation system
+  (This goes to say that the url displayed should change as well and
+   If already logged in, we should be able to navigate to the graph using the url that was displayed)
+   
+- On a successful login, your application should trigger the controller in charge of displaying your graph
+
+- The view for your graph should replace the login view in the layout view’s region
+
+- A working logout button.(we leave the method up to you)
+
+We will not ask you to make a specific type of graph.
+
+Low priority:
+Login will need the following validation
+
+Email:
+Must be a valid email
+Cannot be blank
+
+Password:
+At least 5 characters
+At most 10 characters
+Must contain at least one uppercase letter and one number
+Cannot be blank
 
 
 Deliverable:
@@ -55,12 +91,28 @@ Deliverable:
 
 - Make sure your repository is publicly accessible
 
+Frontend:
+- A login page with a basic validation of email and password
+
+- A successful login will navigate us to another page.
+
+- This page will display the data given to us by the endpoint using a 
+
+- graph you will code using the d3.js library.
+
+
+- A working logout button.
+
 Question:
 ======================================
 - Can you please justify your choice about the database, the data structure and application?
 
 - If you don't have to use the library FriendsOfSymfony or even Symfony, Which framework/library you will use to make the test and why?
 
+Frontend:
+- Explain the reason behind your choice of graph
+
+- Explain your method for validating input fields for the login
 
 Evaluation:
 ======================================
@@ -73,6 +125,15 @@ Evaluation:
 
 - We will evaluate the answers to the question listed in the Deliverable section and other comments that you may have found useful
 
+
+Frontend:
+- Structuring of modules, use of navigation system, views and templates
+
+- We will ask that the graph be flexible for many screen sizes
+
+- Bonus points :
+- if you use the backbone validation plugin
+- if the graph is flexible for a different day format (weekly and monthly interval)
 
 
 Cheers!
