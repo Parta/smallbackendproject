@@ -27,14 +27,6 @@ Resources :
 ======================================
 Login token : https://api.engagementlabs.com/oauth/v2/token
 
-- Credential :
-
-- grant_type: client_credentials
-
-- client_id: 4_458qvdwmkiec008o8c4s8swwkw44ck4k4g0wsk0cwg4ooggc08
-
-- client_secret: 149bbor69msgooss484wsskws40ow8os84swgcwo8ssc0gowog
-
 - Expect Results : see login_exemple.json
 
 items List : https://api.engagementlabs.com/oauth/v2/search 
