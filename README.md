@@ -1,24 +1,26 @@
  #engagementlabs Back-End Project 
 
 
-Global Object:
+Object :
 ======================================
-The objective of this project is to create a platform to see a linechart data visualization of the US brands "7UP" and "A&W Root Beer" during the period of september 2018 and on a weekly interval.
-It require you to login with valid credential and after a successful login, you will redirect to the linechart page.
+The objective of this project is to create a 2-page platform allowing to display a linechart data visualization. The data feeding this chart will come from Engagement Labs' TotalSocial API.
+The 2 pages are :
+- a login screen, which after successful login will redirect you to :
+- a simple page displaying a data visualisation (linechart)
 
-Object:
+Description:
 ======================================
 Backend :
-- Use the API from EngagementLabs to get the data of the US brands 7UP and A&W Root Beer. (see Resources section bellow)
-- All data needs to be save on your database.
-- Create a login endpoint for your platform.
-- create endpoint(s) to get the Brands data.
+- Use the API from EngagementLabs to get the data of the US brands 7UP and A&W Root Beer, during the period of September 2018, using a weekly interval. (see Resources section below)
+- All data needs to be saved to a database of your choice.
+- Create a login endpoint for your platform (effectively creating a session, but using the TotalSocial API credentials).
+- Create endpoint(s) so the front end can fetch Brands data from your database.
 
 Frontend:
 - The application will need to be made with a Backbone framework.
 We require the creation of 2 pages
 - A login page
-- A page to display or graph
+- A page to display or graph using D3.js library
 (more details will follow)
 
 Resources :
@@ -53,7 +55,7 @@ Back-end :
 
 - Database technology, data structure and application architecture is up to you but you need to use Symfony and the library FriendsOfSymfony (https://github.com/FriendsOfSymfony)
 
-- Endpoint(s) need to return a json.
+- Endpoint(s) need to return json.
 
 Frontend:
 
@@ -99,16 +101,17 @@ Deliverable:
 - Make sure your repository is publicly accessible
 
 Frontend:
+
 - A login page with a basic validation of email and password
 
 - A successful login will navigate us to another page.
 
 - This page will display the data given to us by the endpoint using a 
 
-- graph you will code using the d3.js library.
-
+- Graph you will code using the d3.js library.
 
 - A working logout button.
+
 
 Question:
 ======================================
@@ -117,7 +120,6 @@ Question:
 - If you don't have to use the library FriendsOfSymfony or even Symfony, Which framework/library you will use to make the test and why?
 
 Frontend:
-- Explain the reason behind your choice of graph
 
 - Explain your method for validating input fields for the login
 
