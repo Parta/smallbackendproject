@@ -69,10 +69,6 @@ We will not ask you to make a specific type of graph.
 Low priority:
 Login will need the following validation
 
-Email:
-Must be a valid email
-Cannot be blank
-
 Password:
 At least 5 characters
 At most 10 characters
@@ -94,7 +90,7 @@ Deliverable:
 
 Frontend:
 
-- A login page with a basic validation of email and password
+- A login page with a basic validation of username and password
 
 - A successful login will navigate us to another page.
 
