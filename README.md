@@ -62,7 +62,7 @@ Highest Priority:
 
 - The view for your graph should replace the login view in the layout view’s region
 
-- A working logout button.(we leave the method up to you)
+- A working logout button (we leave the method up to you), redirecting you to login page.
 
 We will not ask you to make a specific type of graph.
 
@@ -84,7 +84,7 @@ Deliverable:
 ======================================
 - Fork this project
 
-- Push to your forked repository, containing your PHP files, cron file, an export of your database
+- Push to your forked repository, containing your PHP and JS files, cron file, an export of your database
 
 - In your repository wiki, answer the questions and put any additionnal informations
 
@@ -105,36 +105,15 @@ Frontend:
 - A working logout button.
 
 
-Question:
-======================================
-- Can you please justify your choice about the database, the data structure and application?
-
-- If you don't have to use the library FriendsOfSymfony or even Symfony, Which framework/library you will use to make the test and why?
-
-Frontend:
-
-- Explain your method for validating input fields for the login
-
 Evaluation:
 ======================================
 
-- We will evaluate if the requirements above work as expected
+- We will evaluate if the requirements above work as expected.
 
-- We will evaluate the structure of the application and the logic behind the separation of concerns. For example in the eventuality of adding other crawlers such as crawling Twitter followers of a Twitter account.
+- We will evaluate the structure of the application and the logic behind the separation of concerns.
 
-- We will evaluate overall code quality and readability
+- We will evaluate overall code quality and readability.
 
-- We will evaluate the answers to the question listed in the Deliverable section and other comments that you may have found useful
+- We will evaluate communication on Slack and on TargetProcess. Feel free to ask any question or communicate about any blocker.
 
-
-Frontend:
-- Structuring of modules, use of navigation system, views and templates
-
-- We will ask that the graph be flexible for many screen sizes
-
-- Bonus points :
-- if you use the backbone validation plugin
-- if the graph is flexible for a different day format (weekly or monthly interval)
-
-
-Cheers!
+- There will be a code review at the end of the process.
