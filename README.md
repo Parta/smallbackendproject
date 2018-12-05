@@ -11,7 +11,7 @@ The 2 pages are :
 Description:
 ======================================
 Backend :
-- Use the API from EngagementLabs to get the data of the US brands 7UP and A&W Root Beer, during the period of September 2018, using a weekly interval. (see Resources section below)
+- Use the API from EngagementLabs to get a timeseries (offline volume score metric) of the US brands 7UP and A&W Root Beer, during the period of September 2018, using a weekly interval. (see Resources section below)
 - All data needs to be saved to a database of your choice.
 - Create a login endpoint for your platform (effectively creating a session, but using the TotalSocial API credentials).
 - Create endpoint(s) so the front end can fetch Brands data from your database.
