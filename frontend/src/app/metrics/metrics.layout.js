@@ -1,6 +1,6 @@
 import { View } from 'backbone.marionette';
 import { NavbarView } from '../shared/navbar/navbar.view';
-import { MetricsContent } from './metrics-content/metrics-content';
+import { MetricsContent } from './view/metrics-content/metrics-content';
 
 const MetricsLayout = View.extend({
   className: 'metrics-layout',
@@ -19,4 +19,4 @@ const MetricsLayout = View.extend({
   },
 });
 
-export { MetricsLayout };
+export { MetricsLayout }; // Offline Volume Score

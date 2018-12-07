@@ -1,5 +1,5 @@
 const AuthState = {
-  authenticated: false
+  authenticated: true
 };
 
 export { AuthState };

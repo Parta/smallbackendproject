@@ -1,10 +1,15 @@
 @charset "utf-8";
 
+@import "variables";
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
 @import "base/global";
 
 @import "components/loader";
-@import "components/button";
+@import "components/line-chart";
 
 @import "views/auth/login_container";
 @import "views/navbar/navbar-view";
 @import "views/metrics/metrics-content";
+@import "views/metrics/metric-panel";
