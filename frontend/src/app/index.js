@@ -1,15 +1,18 @@
 import Marionette from 'backbone.marionette';
-import { AuthLayout } from './auth/auth.layout';
+import { Router } from './router';
+import { History } from './history';
 
 const Application = Marionette.Application.extend({
   region: '#root',
 
-  onStart() {
-    this.showView(new AuthLayout());
-  }
+  onStart(app, options) {
+    this.router = new Router(options);
+
+    History.start();
+  },
 });
 
-document.addEventListener('DOMContentLoaded',() => {
-  const app = new Application();
+document.addEventListener('DOMContentLoaded', () => {
+  window.app = new Application();
   app.start();
 });
