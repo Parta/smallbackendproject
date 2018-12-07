@@ -1,0 +1,47 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "brand": {
+        "id": 70905,
+        "name": "7UP"
+      },
+      "metrics": [
+        {
+          "value": 38.883184988799997,
+          "startDate": 1504483200,
+          "endDate": 1505087999
+        },
+        {
+          "value": 36.6970229394,
+          "startDate": 1505088000,
+          "endDate": 1505692799
+        }
+      ]
+    },
+    {
+      "brand": {
+        "id": 70933,
+        "name": "A&W Root Beer"
+      },
+      "metrics": [
+        {
+          "value": 38.883184988799997,
+          "startDate": 1504483200,
+          "endDate": 1505087999
+        },
+        {
+          "value": 36.6970229394,
+          "startDate": 1505088000,
+          "endDate": 1505692799
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "count": 2,
+    "interval": "week",
+    "startDate": 1442188800,
+    "endDate": 1543190399
+  }
+}
