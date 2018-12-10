@@ -56,6 +56,21 @@ class MetricValueRepository extends ServiceEntityRepository {
         return ($periodValues['startDate'] >= $this->tmpStartDate && $periodValues['startDate'] <= $this->tmpEndDate) ||
             ($periodValues['endDate'] >= $this->tmpStartDate && $periodValues['endDate'] <= $this->tmpEndDate);
     }
+    
+    public function getChartData($interval, $ids) {
+        $qb = $this->createQueryBuilder('mv')
+                ->select('mv, brand, metric')
+                ->leftJoin('mv.brand', 'brand')
+                ->leftJoin('mv.metric', 'metric')
+                ->where('mv.valueInterval = :interval')->setParameter('interval', $interval)
+                ->orderBy('mv.startDate', 'ASC');
+        
+        if (!empty($ids)) {
+            $qb->andWhere('brand.apiId IN (:ids)')->setParameter('ids', $ids);
+        }
+        
+        return $qb->getQuery()->getArrayResult();
+    }
 
     // /**
     //  * @return MetricValue[] Returns an array of MetricValue objects
