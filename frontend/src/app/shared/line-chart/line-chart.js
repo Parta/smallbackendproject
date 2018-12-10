@@ -1,7 +1,7 @@
 import { View } from 'backbone.marionette';
 import * as d3 from 'd3';
 import * as _ from 'underscore';
-import { fromUnix } from "../../utils/dateformat";
+import { fromUnix } from '../../utils/dateformat';
 
 const LineChart = View.extend({
   className: 'c-line-chart',
@@ -77,9 +77,9 @@ const LineChart = View.extend({
       ].join(' - ');
     });
 
-    this.svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + this.height + ")")
+    this.svg.append('g')
+      .attr('class', 'x axis')
+      .attr('transform', 'translate(0,' + this.height + ')')
       .call(
         d3.axisBottom(this.xScale)
           .ticks(xLength)
@@ -88,8 +88,8 @@ const LineChart = View.extend({
   },
 
   renderYAxis() {
-    this.svg.append("g")
-      .attr("class", "y axis")
+    this.svg.append('g')
+      .attr('class', 'y axis')
       .call(
         d3.axisLeft(this.yScale)
           .tickValues(this.options.yTickValues)
@@ -97,7 +97,6 @@ const LineChart = View.extend({
   },
 
   renderLines() {
-    // Define the div for the tooltip
     const $tooltip = d3.select(this.el).append('div')
       .attr('class', 'tooltip')
       .style('opacity', 0);
@@ -134,13 +133,13 @@ const LineChart = View.extend({
   },
 
   renderLegends() {
-    this.svg.append("g").selectAll(`.line`)
+    this.svg.append('g').selectAll(`.line`)
       .data(this.options.datasets)
       .enter()
-      .append("text")
+      .append('text')
       .attr('class',(data, index) => `line-label line-label-${index}`)
-      .attr("x", (data, index) => index * 140 + 20)
-      .attr("y", 0)
+      .attr('x', (data, index) => index * 140 + 20)
+      .attr('y', 0)
       .text((dataset) => dataset.label);
   }
 });

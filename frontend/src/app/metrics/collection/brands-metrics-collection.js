@@ -5,7 +5,7 @@ import config from "../../../config";
 const BrandsMetricsCollection = Collection.extend({
   model: BrandMetricsModel,
 
-  url: `${config.baseUrl}/metric-values/week/70905,70933`,
+  url: `${config.baseUrl}/metric-values/`,
 
   parse(response) {
     return response.data;

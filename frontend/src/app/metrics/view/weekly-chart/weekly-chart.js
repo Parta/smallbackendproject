@@ -14,6 +14,7 @@ const WeeklyChart = View.extend({
 
   state: {
     isLoaded: false,
+    metadata: null,
   },
 
   initialize() {
@@ -25,7 +26,8 @@ const WeeklyChart = View.extend({
         interval: 'week',
         ids: ids.join(',')
       }
-    }).then(() => {
+    }).then((response) => {
+      this.state.metadata = response.metadata;
       this.state.isLoaded = true;
       this.render();
     })
@@ -40,7 +42,10 @@ const WeeklyChart = View.extend({
   renderWeeklyChart() {
     const data = {
       title: 'Offline Volume Score (Weekly)',
-      subtitle: '27 Aug 2018 - 30 Sept 2018',
+      subtitle: [
+        fromUnix(this.state.metadata.startDate),
+        fromUnix(this.state.metadata.endDate),
+      ].join(' - '),
       datasets: this.collection.map((model) => {
         return {
           label: model.get('brand').name,

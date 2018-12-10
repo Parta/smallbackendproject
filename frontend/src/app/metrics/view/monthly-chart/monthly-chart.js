@@ -42,7 +42,10 @@ const MonthlyChart = View.extend({
   renderChart() {
     const data = {
       title: 'Offline Volume Score (Monthly)',
-      subtitle: '27 Aug 2018 - 30 Sept 2018',
+      subtitle: [
+        fromUnix(this.state.metadata.startDate),
+        fromUnix(this.state.metadata.endDate),
+      ].join(' - '),
       datasets: this.collection.map((model) => {
         const metric = model.get('metrics').pop();
         return {
