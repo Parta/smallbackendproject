@@ -1,0 +1,20 @@
+.metric-panel {
+  padding: 8px;
+
+  &__body {
+    background-color: $white;
+    border: 1px solid $gray-500;
+    padding: 16px;
+  }
+}
+
+.monthly-metrics {
+  &__container {
+    display: flex;
+    flex-flow: row wrap;
+
+    .metric-panel {
+      flex-basis: 50%;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.c-line-chart {
+  max-width: 100%;
+  overflow-x: scroll;
+
+  .line {
+    fill: none;
+    stroke-width: 3;
+  }
+
+  .line-0 {
+    stroke: $primary;
+  }
+
+  .line-1 {
+    stroke: $secondary;
+  }
+
+  .overlay {
+    fill: none;
+    pointer-events: all;
+  }
+
+  .dot {
+    fill: $primary;
+    stroke: #fff;
+  }
+
+  .dot-0 {
+    fill: $primary;
+  }
+
+  .dot-1 {
+    fill: $secondary;
+  }
+
+  .focus circle {
+    fill: none;
+    stroke: steelblue;
+  }
+}
