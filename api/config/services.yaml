@@ -26,3 +26,17 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    
+    App\Api\Provider\ApiUrlProvider:
+        arguments:
+            $apiSettings: "%api_urls_settings%"
+            
+    App\Api\Provider\LoginApiRequestDataProvider:
+        arguments:
+            $grantType: "%env(TOTALSOCIAL_API_GRANT_TYPE)%"
+            $clientId: "%env(TOTALSOCIAL_API_CLIENT_ID)%"
+            $clientSecret: "%env(TOTALSOCIAL_API_CLIENT_SECRET)%"
+            
+    app.login_api_request_data_provider:
+        alias: App\Api\Provider\LoginApiRequestDataProvider
+        public: true
