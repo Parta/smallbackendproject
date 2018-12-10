@@ -8,4 +8,8 @@ class ImportItemListApiRequestData implements ApiRequestDataInterface {
 
     public $accessToken;
 
+    public function __construct($accessToken) {
+        $this->accessToken = $accessToken;
+    }
+
 }
