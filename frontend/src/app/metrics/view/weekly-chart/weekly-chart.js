@@ -1,12 +1,12 @@
 import { View } from 'backbone.marionette';
 import { LineChart } from '../../../shared/line-chart/line-chart';
 import { Tooltip } from '../../../shared/line-chart/tooltip/tooltip';
-import { fromUnix } from '../../../utils/dateformat';
 import { BrandsMetricsCollection } from '../../collection/brands-metrics-collection';
+import { fromUnix } from '../../../utils/dateformat';
 import { BrandCollections } from '../../collection/brands-collection';
 
-const MonthlyChart = View.extend({
-  template: require('./monthly-chart.hbs'),
+const WeeklyChart = View.extend({
+  template: require('./weekly-chart.hbs'),
 
   regions: {
     chartContainer: '.js-region-chart'
@@ -14,7 +14,6 @@ const MonthlyChart = View.extend({
 
   state: {
     isLoaded: false,
-    metadata: {},
   },
 
   initialize() {
@@ -23,37 +22,35 @@ const MonthlyChart = View.extend({
     this.collection = new BrandsMetricsCollection();
     this.collection.fetch({
       data: {
-        interval: 'month',
+        interval: 'week',
         ids: ids.join(',')
       }
-    }).then((response) => {
+    }).then(() => {
       this.state.isLoaded = true;
-      this.state.metadata = response.metadata;
       this.render();
     })
   },
 
   onRender() {
     if (this.state.isLoaded) {
-      this.renderChart()
+      this.renderWeeklyChart()
     }
   },
 
-  renderChart() {
+  renderWeeklyChart() {
     const data = {
-      title: 'Offline Volume Score (Monthly)',
+      title: 'Offline Volume Score (Weekly)',
       subtitle: '27 Aug 2018 - 30 Sept 2018',
       datasets: this.collection.map((model) => {
-        const metric = model.get('metrics').pop();
         return {
           label: model.get('brand').name,
-          data: [
-            {
+          data: model.get('metrics').map(metric => {
+            return {
               from: metric.startDate,
               to: metric.endDate,
               value: metric.value
             }
-          ]
+          })
         }
       }),
       tooltipHtml: (selectedItem, selectedValues) => {
@@ -70,4 +67,4 @@ const MonthlyChart = View.extend({
   }
 });
 
-export { MonthlyChart };
+export { WeeklyChart };

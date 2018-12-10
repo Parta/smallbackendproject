@@ -1,0 +1,10 @@
+.weekly-metrics {
+  padding: 0 8px;
+  margin: 8px 0;
+
+  &__panel {
+    border: 1px solid $gray-500;
+    background-color: $white;
+    padding: 16px;
+  }
+}
