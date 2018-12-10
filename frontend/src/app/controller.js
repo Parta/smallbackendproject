@@ -1,8 +1,13 @@
 import { History } from './history';
+import authService  from "./auth/auth.service";
 
 const AppController = {
   index() {
-    History.navigate('app/metrics', true);
+    if (authService.authenticated()) {
+      return History.navigate('app/metrics', true);
+    }
+
+    History.navigate('login', true);
   },
 
   login() {

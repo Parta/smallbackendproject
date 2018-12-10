@@ -30,7 +30,9 @@ const LineChart = View.extend({
   },
 
   onRender() {
-    this.renderChart();
+    if (this.options.datasets.length) {
+      this.renderChart();
+    }
   },
 
   renderChart() {

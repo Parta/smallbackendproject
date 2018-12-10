@@ -19,4 +19,4 @@ const MetricsLayout = View.extend({
   },
 });
 
-export { MetricsLayout }; // Offline Volume Score
+export { MetricsLayout };

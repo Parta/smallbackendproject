@@ -1,7 +1,6 @@
 import AppRouter from 'marionette.approuter';
 import { AppController } from "./controller";
-import { AuthState } from "./auth/auth.state";
-import { History } from "./history";
+import authService  from "./auth/auth.service";
 
 const Router = AppRouter.extend({
   controller: AppController,
@@ -12,14 +11,20 @@ const Router = AppRouter.extend({
     'app/metrics': 'metrics',
   },
 
-  onRoute: function(name, path) {
-    if (path === 'login' && AuthState.authenticated) {
-      return History.navigate('/', true);
+  execute(callback, args, name) {
+    if (name === 'login') {
+      if (authService.authenticated()) {
+        return this.navigate('/', { trigger: true });
+      }
+
+      return callback.apply(this, args);
     }
 
-    if (path.startsWith('app', 0) && !AuthState.authenticated) {
-      return History.navigate('login', true);
+    if (!authService.authenticated()) {
+      return this.navigate('login', { trigger: true });
     }
+
+    if (callback) callback.apply(this, args);
   }
 });
 
