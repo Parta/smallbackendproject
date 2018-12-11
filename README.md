@@ -12,6 +12,8 @@ to install backend run commands:
 
 `php bin/console import-social-api-data`
 
+`php bin/console fos:user:create`
+
 You can find dbdump in `api/dbdump/db.sql` file
 
 

@@ -36,7 +36,6 @@ class MetricValueRepository extends ServiceEntityRepository {
     }
 
     protected function importPeriodMetricValues($brandId, $periodValues, $metrics, $interval) {
-        if ($this->checkTestPeriod($periodValues)) {
             foreach ($periodValues['metrics'] as $metricValues) {
                 $item = new MetricValue;
                 $item->setBrand($this->getEntityManager()->getReference(Brand::class, $brandId));
@@ -49,7 +48,6 @@ class MetricValueRepository extends ServiceEntityRepository {
             }
             
             $this->getEntityManager()->flush();
-        }
     }
     
     protected function checkTestPeriod($periodValues) {

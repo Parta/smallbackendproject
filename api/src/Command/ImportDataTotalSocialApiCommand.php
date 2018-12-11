@@ -6,6 +6,7 @@ use App\Api\Handler\TotalSocial\Import\ImportItemListApiHandler;
 use App\Api\Handler\TotalSocial\Import\ImportMetricListHandler;
 use App\Api\Handler\TotalSocial\LoginApiHandler;
 use App\Api\Provider\LoginApiRequestDataProvider;
+use App\Api\Provider\MetricIntervalProvider;
 use App\Api\Request\Data\TotalSocial\Import\ImportItemListApiRequestData;
 use App\Api\Request\Data\TotalSocial\Import\ImportMetricListApiRequestData;
 use Symfony\Component\Console\Command\Command;
@@ -44,7 +45,8 @@ class ImportDataTotalSocialApiCommand extends Command {
             $accessToken = $this->loginApiHandler->process($this->loginApiDataProvider->getData());
             $this->importItemListApiHandler->process(new ImportItemListApiRequestData($accessToken));
 
-            $this->importMetricListApiHandler->process(new ImportMetricListApiRequestData($accessToken));
+            $this->importMetricListApiHandler->process(new ImportMetricListApiRequestData($accessToken, MetricIntervalProvider::METRIC_INTERVAL_WEEK_STRING));
+            $this->importMetricListApiHandler->process(new ImportMetricListApiRequestData($accessToken, MetricIntervalProvider::METRIC_INTERVAL_MONTH_STRING));
 
             $io->success('Import Success');
         } catch (\Exception $ex) {
