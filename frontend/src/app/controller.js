@@ -1,5 +1,6 @@
 import { History } from './history';
 import authService  from "./auth/auth.service";
+import app from './app';
 
 const AppController = {
   index() {

@@ -1,18 +1,5 @@
-import Marionette from 'backbone.marionette';
-import { Router } from './router';
-import { History } from './history';
-
-const Application = Marionette.Application.extend({
-  region: '#root',
-
-  onStart(app, options) {
-    this.router = new Router(options);
-
-    History.start();
-  },
-});
+import application from './app';
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.app = new Application();
-  app.start();
+  application.start();
 });
