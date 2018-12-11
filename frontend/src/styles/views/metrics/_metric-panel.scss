@@ -1,0 +1,35 @@
+.metric-panel {
+  padding: 0 8px;
+  margin: 8px 0;
+
+  &__body {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    background-color: $white;
+    border: 1px solid $gray-500;
+    padding: 16px;
+  }
+
+  &__value {
+    font-weight: bold;
+    font-size: 2em;
+  }
+}
+
+.monthly-metrics {
+  &__container {
+    display: flex;
+    flex-flow: row wrap;
+
+    .metric-panel {
+      width: 100%;
+    }
+
+    @include media-breakpoint-up(lg) {
+      .metric-panel {
+        width: 50%;
+      }
+    }
+  }
+}

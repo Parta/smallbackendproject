@@ -1,0 +1,85 @@
+.c-line-chart {
+  max-width: 100%;
+  overflow-x: scroll;
+
+  .line {
+    fill: none;
+    stroke-width: 3;
+  }
+
+  .line-0 {
+    stroke: $primary;
+  }
+
+  .line-1 {
+    stroke: $secondary;
+  }
+
+  .overlay {
+    fill: none;
+    pointer-events: all;
+  }
+
+  .dot {
+    fill: $primary;
+    stroke: #fff;
+  }
+
+  .dot-0 {
+    fill: $primary;
+  }
+
+  .dot-1 {
+    fill: $secondary;
+  }
+
+  .line-label-0 {
+    fill: $primary;
+  }
+
+  .line-label-1 {
+    fill: $secondary;
+  }
+
+  .label-circle {
+    stroke: #fff;
+  }
+
+  .label-circle-0 {
+    fill: $primary;
+  }
+
+  .label-circle-1 {
+    fill: $secondary;
+  }
+
+  .tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 12px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0;
+    border-radius: 2px;
+    pointer-events: none;
+
+    &__content {
+
+    }
+
+    &__brand-value {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+    }
+
+    &__title {
+      display: inline-flex;
+      margin-right: 8px;
+    }
+
+    &__value {
+
+    }
+  }
+}

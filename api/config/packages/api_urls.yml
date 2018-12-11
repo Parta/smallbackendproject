@@ -1,0 +1,7 @@
+parameters:
+    api_urls_settings:
+        baseUri: 'https://api.engagementlabs.com'
+        urls:
+            login: 'oauth/v2/token'
+            list_items: 'oauth/v2/search'
+            list_metrics: 'oauth/v2/items'

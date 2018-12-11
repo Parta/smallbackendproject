@@ -1,5 +1,24 @@
  #engagementlabs Back-End Project 
 
+Polcode Feedback :
+======================================
+
+to install backend run commands:
+`cp .env.dist .env` and update configuration
+
+`composer install`
+
+`php bin/console d:m:m`
+
+`php bin/console import-social-api-data`
+
+`php bin/console fos:user:create`
+
+You can find dbdump in `api/dbdump/db.sql` file. 
+
+I have created test user: `{'username': 'tester', 'password': 'tester'}`
+
+
 
 Object :
 ======================================
