@@ -5,8 +5,14 @@
     display: flex;
     flex-flow: row wrap;
 
-    .weekly-metrics {
-      flex-basis: 50%;
+    .weekly-metrics  {
+      width: 100%;
+    }
+
+    @include media-breakpoint-up(lg) {
+      .weekly-metrics {
+        width: 50%;
+      }
     }
   }
 }

@@ -23,7 +23,13 @@
     flex-flow: row wrap;
 
     .metric-panel {
-      flex-basis: 50%;
+      width: 100%;
+    }
+
+    @include media-breakpoint-up(lg) {
+      .metric-panel {
+        width: 50%;
+      }
     }
   }
 }
