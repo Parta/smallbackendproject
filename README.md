@@ -14,7 +14,9 @@ to install backend run commands:
 
 `php bin/console fos:user:create`
 
-You can find dbdump in `api/dbdump/db.sql` file
+You can find dbdump in `api/dbdump/db.sql` file. 
+
+I have created test user: `{'username': 'tester', 'password': 'tester'}`
 
 
 
