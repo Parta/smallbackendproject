@@ -8,7 +8,6 @@ const Application = Marionette.Application.extend({
 
   onStart(app, options) {
     this.router = new Router(options);
-
     History.start();
   },
 });

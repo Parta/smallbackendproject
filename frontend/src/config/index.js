@@ -1,5 +1,5 @@
 let config;
-if (process.NODE_ENV === 'production') {
+if (ENV === 'production') {
   config = require('./prod');
 } else {
   config = require('./dev');

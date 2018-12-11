@@ -16,7 +16,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "start": "gulp",
+    "start": "cross-env NODE_ENV=dev gulp",
     "build": "cross-env NODE_ENV=production gulp"
   },
   "devDependencies": {

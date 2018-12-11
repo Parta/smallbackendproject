@@ -38,7 +38,11 @@ const webpackConfig = {
       }
     ],
   },
-  plugins: [],
+  plugins: [
+    new webpack.DefinePlugin({
+      ENV: JSON.stringify(process.env.NODE_ENV),
+    })
+  ],
 };
 
 /**
