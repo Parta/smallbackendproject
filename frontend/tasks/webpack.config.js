@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const config = require('./config');
 const mode = require('./lib/mode');
-const profile = mode.production ? 'prod' : 'dev';
 
 const publicPath = config.browserSync.proxy.target
   ? config.browserSync.proxy.publicPath
@@ -38,11 +37,6 @@ const webpackConfig = {
         loader: 'handlebars-loader'
       }
     ],
-  },
-  resolve: {
-    alias: {
-      config: path.join('../config', `${profile}.js`)
-    }
   },
   plugins: [],
 };

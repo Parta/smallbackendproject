@@ -1,7 +1,8 @@
 import { View } from 'backbone.marionette';
 import template from './login-form.hbs';
-import { AuthState } from '../auth.state';
+import authService  from '../auth.service';
 import { History } from '../../history';
+
 
 export default View.extend({
   template,
@@ -15,7 +16,7 @@ export default View.extend({
   },
 
   handleLoginClick() {
-    AuthState.authenticated = true;
+    authService.login();
     History.navigate('/', true);
   },
 });

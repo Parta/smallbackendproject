@@ -1,0 +1,12 @@
+.metric-row {
+
+  &__columns {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+
+  &__value {
+    font-weight: bold;
+  }
+}

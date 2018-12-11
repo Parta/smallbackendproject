@@ -1,0 +1,12 @@
+.brands-weekly-metrics {
+  margin: 0 0 32px;
+
+  .metrics-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+
+    .weekly-metrics {
+      flex-basis: 50%;
+    }
+  }
+}

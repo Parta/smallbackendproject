@@ -1,5 +1,5 @@
 import { View } from 'backbone.marionette';
-import { AuthState } from '../../auth/auth.state';
+import authService  from '../../auth/auth.service';
 import { History } from '../../history';
 
 const NavbarView = View.extend({
@@ -16,7 +16,7 @@ const NavbarView = View.extend({
   },
 
   handleLogoutClick() {
-    AuthState.authenticated = false;
+    authService.logout();
     History.navigate('/', true);
   },
 });

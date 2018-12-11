@@ -1,7 +1,7 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 $primary:       $blue;
-$secondary:     $gray-600;
+$secondary:     $gray-700;
 $success:       $green;
 $info:          $cyan;
 $warning:       $yellow;
@@ -12,3 +12,6 @@ $dark:          $gray-800;
 $border-radius:               0;
 $border-radius-lg:            0;
 $border-radius-sm:            0;
+
+$body-bg:                   $gray-100;
+$body-color:                $gray-900;

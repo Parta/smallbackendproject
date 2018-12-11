@@ -1,0 +1,9 @@
+<div class="tooltip__content">
+  <div><small>{{ item.from }} - {{ item.to }}</small></div>
+  {{#each selectedValues as |selectedValue| }}
+    <div class="tooltip__brand-value">
+      <span class="tooltip__title">{{ selectedValue.dataset.label }}</span>
+      <strong class="tooltip__value">{{ selectedValue.item.value }}</strong>
+    </div>
+  {{/each}}
+</div>
