@@ -4,24 +4,20 @@ namespace App\Controller;
 
 use App\Api\Handler\Chart\GetChartDataApiHandler;
 use App\Api\Request\Data\Chart\GetChartDataApiRequestData;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\View\View;
+use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @Route("/api", name="api_")
- */
-class ChartController extends AbstractController {
+class ChartController extends FOSRestController {
 
     /**
-     * @Route("/metric-values/{interval}/{ids}", name="metric_values", defaults={"interval": "week", "ids": null}, requirements={"interval": "week|month"}, methods={"GET"})
+     * @Rest\Get("metric-values/{interval}/{ids}", name="api_get_metric_values", defaults={"interval": "week", "ids": null}, requirements={"interval": "week|month"})
      */
-    public function index($interval, $ids, GetChartDataApiHandler $chartDataApiHandler) {
-        
+    public function getMetricValues($interval, $ids, GetChartDataApiHandler $chartDataApiHandler) {
         $response = $chartDataApiHandler->process(new GetChartDataApiRequestData($interval, $ids));
-        
-        
-        return new JsonResponse($response);
+
+        return View::create($response, Response::HTTP_OK);
     }
 
 }

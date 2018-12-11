@@ -24,7 +24,7 @@ class ImportMetricListHandler implements ApiHandlerInterface {
 
     public function process(ApiRequestDataInterface $requestData) {
         $response = $this->apiClient->getMetricList($requestData);
-        
+        print_r($response);exit;
         //$response = json_decode(file_get_contents('/var/www/html/week.json'), true); //tmp for tests
         $metricParser = new MetricListResponseParser($response);
         $metricValues = $metricParser->getMetricValues();

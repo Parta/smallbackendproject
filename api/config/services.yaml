@@ -40,3 +40,26 @@ services:
     app.login_api_request_data_provider:
         alias: App\Api\Provider\LoginApiRequestDataProvider
         public: true
+        
+    app.api_response_provider:
+        alias: App\Api\Response\ApiResponseProvider
+        public: true
+
+    app.event.authentication_failure_listener:
+        class: App\Api\EventListener\AuthenticationFailureListener
+        arguments: ["@app.api_response_provider"]
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_failure, method: onAuthenticationFailureResponse }
+            
+    api.event.jwt_invalid_listener:
+        class: App\Api\EventListener\JWTInvalidListener
+        arguments: ["@app.api_response_provider"]
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_invalid, method: onJWTInvalid }
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_not_found, method: onJWTNotFound }
+            
+    api.event.jwt_expired_listener:
+        class: App\Api\EventListener\JWTExpiredListener
+        arguments: ["@app.api_response_provider"]
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_expired, method: onJWTExpired }

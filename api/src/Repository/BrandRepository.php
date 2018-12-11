@@ -27,7 +27,7 @@ class BrandRepository extends ServiceEntityRepository {
         $currentBrands = $this->getBrandsIndexedByApiId();
         
         foreach ($data as $brandData) {
-            if (in_array($brandData['id'], $acceptedBrands) && !in_array($brandData['id'], $currentBrands)) {
+            if (in_array($brandData['id'], $acceptedBrands) && !array_key_exists($brandData['id'], $currentBrands)) {
                 $item = new Brand;
                 $item->setApiId($brandData['id']);
                 $item->setName($brandData['name']);

@@ -12,12 +12,20 @@ class ImportMetricListApiRequestData implements ApiRequestDataInterface {
     public $outputType = 'overtime';
     public $from = 1442188800;
     public $to = 1543190399;
-    public $interval = 'week';
+    public $interval = 'month';
     public $accessToken;
 
     public function __construct($accessToken) {
-        $this->from = strtotime(date('2015-09-14 02:00:00'));
-        $this->to = strtotime(date('2018-11-26 00:59:59'));
+        date_default_timezone_set('UTC') ;
+//        $testDate = new \DateTime('2018-09-30T23:59:59', new \DateTimeZone('UTC'));
+//        echo $testDate->getTimestamp() . '<br />';
+//        echo strtotime(date('2018-09-30 23:59:59'));
+//        //echo date('Y-m-d H:i:s', 1538348399);
+//        exit;
+//        $this->from = strtotime(date('2018-09-01 0:00:00'));
+//        $this->to = strtotime(date('2018-09-30 23:59:59'));
+        $this->from = strtotime(date('2018-08-27 0:00:00'));
+        $this->to = strtotime(date('2018-09-30 23:59:59'));
         $this->accessToken = $accessToken;
     }
 
