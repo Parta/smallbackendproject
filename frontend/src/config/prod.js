@@ -1,4 +1,4 @@
 export default Object.freeze({
   debug: false,
-  baseUrl: 'http://polcode-test-api.local/api'
+  baseUrl: 'https://polcode-test-api.at-dev.ovh/api'
 });
